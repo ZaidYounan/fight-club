@@ -57,7 +57,7 @@ function Navbar() {
                             </Link>
                         </li>
                     </ul>
-                    {button && <Button buttonStyle='btn--outline'>COACH SIGN IN</Button>}
+                    {button && <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>}
                 </div>
             </nav>
         </>
