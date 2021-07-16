@@ -6,13 +6,15 @@ const STYLES = ['btn--primary', 'btn--outline', 'btn--test'];
 
 const SIZES = ['btn--medium', 'btn--large'];
 
+const LINKS = ['/sign-up', '/sign-in', '/schedule']
 
 export const Button = ({ 
     children, 
     type, 
     onClick, 
     buttonStyle, 
-    buttonSize 
+    buttonSize,
+    link
 }) => {
     const checkButtonStyle = STYLES.includes(buttonStyle)
     ? buttonStyle
@@ -20,8 +22,10 @@ export const Button = ({
 
     const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0]
 
+    const checkLink = LINKS.includes(link) ? link : LINKS[0]
+
     return (
-        <Link to='/sign-up' className='btn-mobile'>
+        <Link to={ checkLink } className='btn-mobile'>
             <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={onClick} type={type}>
                 { children }
             </button>

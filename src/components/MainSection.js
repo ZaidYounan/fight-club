@@ -6,9 +6,10 @@ import '../App.css';
 function MainSection() {
     return (
         <div className='hero-container'>
-            <h1>THE SWEET SCIENCE - Pierce Egan</h1> 
+            <h1>THE SWEET SCIENCE</h1> 
             <div className='hero-btns'>
                 <Button 
+                    link='/schedule'
                     className='btns'
                     buttonStyle='btn--outline'
                     buttonSize='btn--large'>
