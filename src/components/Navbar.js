@@ -19,6 +19,15 @@ function Navbar() {
         }
     };
 
+    const showCoach = () => {
+    if (window.innerWidth <= 960) {
+        return <li className='nav-item'>
+            <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>
+        </li>
+        }
+        
+    }
+
     useEffect(() => {
         showButton();
     }, []);
@@ -56,6 +65,7 @@ function Navbar() {
                                 Contact Us
                             </Link>
                         </li>
+                        {showCoach()}
                     </ul>
                     {button && <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>}
                 </div>

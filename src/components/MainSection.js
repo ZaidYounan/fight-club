@@ -13,7 +13,7 @@ function MainSection() {
                     className='btns'
                     buttonStyle='btn--outline'
                     buttonSize='btn--large'>
-                        View the Scheduled Fights!
+                        View the Scheduled Fights
                 </Button>
                 <Button 
                     className='btns'
