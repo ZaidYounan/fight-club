@@ -44,7 +44,7 @@ function BoxerView() {
                         })}
                     </div>
                 ))}
-                <Button link='/fighter/new' buttonStyle='btn--schedule'>Add A New Fighter</Button>
+                <Button link='/fighters/new' buttonStyle='btn--schedule'>Add A New Fighter</Button>
             </div>
         ) : ( 
             <div>Loading Boxers</div> 

@@ -18,7 +18,7 @@ function App() {
           <Route path="/schedule" exact component={Schedule} />
           <Route path="/schedule/new" exact component={ScheduleForm} />
           <Route path="/fighters" exact component={Fighters}/>
-          <Route path="/fighter/new" exact component={CreateBoxer}/>
+          <Route path="/fighters/new" exact component={CreateBoxer}/>
         </Switch>
       </Router>
     </>

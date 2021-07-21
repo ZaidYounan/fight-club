@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useState } from 'react';
 import './NewBoxer.css'
 import axios from 'axios';
 
@@ -9,6 +9,7 @@ function NewBoxer() {
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
     const [reach, setReach] = useState('');
+    const [stance, setStance] = useState('');
     const [gym, setGym] = useState('');
     const [loading, setLoading] = useState(false);
     const [isError, setIsError] = useState(false);
@@ -18,25 +19,26 @@ function NewBoxer() {
         setLoading(true);
         setIsError(false);
         const data = {
-            firstName: firstName,
-            lastName: lastName,
+            first_name: firstName,
+            last_name: lastName,
             height: height,
             weight: weight,
             reach: reach,
-            gym: gym,
+            stance: stance,
+            gym_id: gym,
         }
-        axios.post('http://localhost:3001/fighter/new', data).then(res =>{
+        axios.post('http://localhost:3001/boxers/new', data).then(res =>{
             setData(res.data);
             setFirstName('');
             setLastName('');
             setHeight('');
             setWeight('');
             setReach('');
+            setStance('');
             setGym('');
             setLoading(false);
         })
     }
-
 
     return (
         <div className="container">
@@ -90,6 +92,16 @@ function NewBoxer() {
               placeholder="Reach"
               value={reach}
               onChange={e => setReach(e.target.value)} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="stance" className="mt-2">Stance</label>
+            <input
+              type="string"
+              className="form-control"
+              id="stance"
+              placeholder="Stance"
+              value={stance}
+              onChange={e => setStance(e.target.value)} />
           </div>
           <div className="form-group">
             <label htmlFor="gym" className="mt-2">Gym</label>
