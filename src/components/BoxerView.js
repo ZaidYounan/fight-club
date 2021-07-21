@@ -32,23 +32,17 @@ function BoxerView() {
 
     return (
         boxers ? (
-
-
-            
-            
             <>
-
-            
                 {boxers.map((data) => (
-                    <div class="boxer-container"> 
+                    <div className="boxer-container"> 
                         <td>Name: {data.first_name} {data.last_name}</td>           
                         <td>Height: {data.height}cm</td>
                         <td>Weight: {data.weight}kg</td>
                             { gyms.map((gym) => {
-                                if (gym.id == data.gym_id) {
+                                if (gym.id === data.gym_id) {
                                     return <div>Gym: {gym.name}</div>
                                 } else {
-                                return
+                                return null
                             }
                         })}
                     </div>
