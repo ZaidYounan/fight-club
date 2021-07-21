@@ -1,5 +1,11 @@
-.nb-container {
+.container {
     display:flex;
     justify-content:center;
     margin-top:50px;
+}
+
+.form-group {
+    display:flex;
+    flex-direction:column;
+    margin-bottom:10px;
 }

@@ -11,7 +11,6 @@ function BoxerView() {
         axios.get('http://localhost:3001/boxers/')
             .then(response => {
                 setBoxers(response.data);
-                console.log(response.data);
             })
             .catch(error => {
                 console.log(error)
@@ -22,20 +21,17 @@ function BoxerView() {
         axios.get('http://localhost:3001/gyms/')
             .then(response => {
                 setGyms(response.data);
-                console.log(response.data);
             })
             .catch(error => {
                 console.log(error)
             })
     }, []);
 
-
-
     return (
         boxers ? (
             <div className="boxer-container">
                 {boxers.map((data) => (
-                    <div className="boxer-cards"> 
+                    <div className="boxer-cards" key={data.id}> 
                         <td>Name: {data.first_name} {data.last_name}</td>           
                         <td>Height: {data.height}cm</td>
                         <td>Weight: {data.weight}kg</td>
@@ -49,10 +45,9 @@ function BoxerView() {
                     </div>
                 ))}
                 <Button link='/fighter/new' buttonStyle='btn--schedule'>Add A New Fighter</Button>
-
             </div>
-    ) : ( 
-        <div>Loading Boxers</div> 
+        ) : ( 
+            <div>Loading Boxers</div> 
         )
     );
 }
