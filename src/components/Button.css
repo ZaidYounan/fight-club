@@ -17,8 +17,8 @@
 }
 
 .btn--schedule {
-    background-color: var(--primary);
-    color: #242424;
+    background-color: #000000;
+    color: white;
     border:1px solid black;
 }
 

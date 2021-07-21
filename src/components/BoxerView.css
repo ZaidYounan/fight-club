@@ -1,11 +1,16 @@
-
-
 .boxer-container {
-    margin:50px;
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    border: solid 1px black;
-    width:30%;
+    width:100%;
+}
+
+.boxer-cards {
+    margin:30px;
+    padding:10px;
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    border:solid black 1px;
 }

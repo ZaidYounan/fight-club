@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './BoxerView.css';
 import axios from 'axios';
+import { Button } from './Button';
 
 function BoxerView() {
     const [boxers, setBoxers] = useState([]);
@@ -32,9 +33,9 @@ function BoxerView() {
 
     return (
         boxers ? (
-            <>
+            <div className="boxer-container">
                 {boxers.map((data) => (
-                    <div className="boxer-container"> 
+                    <div className="boxer-cards"> 
                         <td>Name: {data.first_name} {data.last_name}</td>           
                         <td>Height: {data.height}cm</td>
                         <td>Weight: {data.weight}kg</td>
@@ -47,7 +48,9 @@ function BoxerView() {
                         })}
                     </div>
                 ))}
-            </>
+                <Button link='/fighter/new' buttonStyle='btn--schedule'>Add A New Fighter</Button>
+
+            </div>
     ) : ( 
         <div>Loading Boxers</div> 
         )
