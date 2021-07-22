@@ -10,7 +10,7 @@ import CreateBoxer from './components/pages/CreateBoxer';
 
 function App() {
   return (
-    <>
+    <div>
       <Router>
         <Navbar />
         <Switch>
@@ -21,7 +21,7 @@ function App() {
           <Route path="/fighters/new" exact component={CreateBoxer}/>
         </Switch>
       </Router>
-    </>
+    </div>
   );
 }
 

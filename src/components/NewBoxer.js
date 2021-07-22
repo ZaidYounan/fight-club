@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './NewBoxer.css'
 import axios from 'axios';
-
+import { useHistory } from 'react-router';
 
 function NewBoxer() {
     const [firstName, setFirstName] = useState('');
@@ -15,10 +15,18 @@ function NewBoxer() {
     const [loading, setLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [data, setData] = useState(null);
+    const [submitted, setSubmitted] = useState(false);
+    const history = useHistory();
+
 
     const handleSubmit = () => {
+        
         setLoading(true);
         setIsError(false);
+        setSubmitted(true);
+        
+
+
         const data = {
             first_name: firstName,
             last_name: lastName,
@@ -38,6 +46,8 @@ function NewBoxer() {
             setStance('');
             setGym('');
             setLoading(false);
+            setSubmitted(false);
+            history.push('/fighters/');
         })
     }
 
@@ -50,6 +60,10 @@ function NewBoxer() {
                 console.log(error)
             })
     }, []);
+
+
+
+
 
     return (
         <div className="container">
@@ -114,17 +128,6 @@ function NewBoxer() {
               value={stance}
               onChange={e => setStance(e.target.value)} />
           </div>
-
-          {/* <div className="form-group">
-            <label htmlFor="gym" className="mt-2">Gym</label>
-            <input
-              type="number"
-              className="form-control"
-              id="gym_id"
-              placeholder="Gym ID"
-              value={gym}
-              onChange={e => setGym(e.target.value)} />
-          </div> */}
           
           <div className="form-group">
             <select               
@@ -132,12 +135,11 @@ function NewBoxer() {
               id="gym_id"
               placeholder="Gym ID"
               onChange={e => setGym(e.target.value)}
-              onSubmit={e => setGyms(e.target.value)
-            }
+              onSubmit={e => setGyms(e.target.value)}
               >
-                    <option value='Please Select A Gym'>
-                        'Please Select A Gym'
-                    </option>
+                <option value='Please Select A Gym'>
+                    'Please Select A Gym'
+                </option>
                 {gyms.map(gym => (
                     <option key={gym.value} value={gym.value}  >
                         {gym.id} - {gym.name}
@@ -151,13 +153,9 @@ function NewBoxer() {
             type="submit"
             className="btn btn-primary mt-3"
             onClick={handleSubmit}
-            disabled={loading}
-          >{loading ? 'Loading...' : 'Submit'}</button>
-          {data && <div className="mt-3">
-            <strong>Output:</strong><br />
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-          </div>
-          }
+            disabled={loading} >
+                {loading ? 'Loading...' : 'Submit'}
+            </button>
         </div>
       </div>
     )
