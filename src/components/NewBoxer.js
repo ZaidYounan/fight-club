@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './NewBoxer.css'
 import axios from 'axios';
 
@@ -11,6 +11,7 @@ function NewBoxer() {
     const [reach, setReach] = useState('');
     const [stance, setStance] = useState('');
     const [gym, setGym] = useState('');
+    const [gyms, setGyms] = useState([]);
     const [loading, setLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [data, setData] = useState(null);
@@ -39,6 +40,16 @@ function NewBoxer() {
             setLoading(false);
         })
     }
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/gyms/')
+            .then(response => {
+                setGyms(response.data);
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }, []);
 
     return (
         <div className="container">
@@ -103,7 +114,8 @@ function NewBoxer() {
               value={stance}
               onChange={e => setStance(e.target.value)} />
           </div>
-          <div className="form-group">
+
+          {/* <div className="form-group">
             <label htmlFor="gym" className="mt-2">Gym</label>
             <input
               type="number"
@@ -112,7 +124,28 @@ function NewBoxer() {
               placeholder="Gym ID"
               value={gym}
               onChange={e => setGym(e.target.value)} />
-          </div>
+          </div> */}
+          
+          <div className="form-group">
+            <select               
+              className="form-control"
+              id="gym_id"
+              placeholder="Gym ID"
+              onChange={e => setGym(e.target.value)}
+              onSubmit={e => setGyms(e.target.value)
+            }
+              >
+                    <option value='Please Select A Gym'>
+                        'Please Select A Gym'
+                    </option>
+                {gyms.map(gym => (
+                    <option key={gym.value} value={gym.value}  >
+                        {gym.id} - {gym.name}
+                    </option>
+                    ))}
+            </select>
+           </div>
+
           {isError && <small className="mt-3 d-inline-block text-danger">Something went wrong. Please try again later.</small>}
           <button
             type="submit"
