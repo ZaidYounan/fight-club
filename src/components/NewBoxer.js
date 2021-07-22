@@ -15,7 +15,6 @@ function NewBoxer() {
     const [loading, setLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [data, setData] = useState(null);
-    const [submitted, setSubmitted] = useState(false);
     const history = useHistory();
 
 
@@ -23,10 +22,7 @@ function NewBoxer() {
         
         setLoading(true);
         setIsError(false);
-        setSubmitted(true);
         
-
-
         const data = {
             first_name: firstName,
             last_name: lastName,
@@ -46,7 +42,6 @@ function NewBoxer() {
             setStance('');
             setGym('');
             setLoading(false);
-            setSubmitted(false);
             history.push('/fighters/');
         })
     }
@@ -60,9 +55,6 @@ function NewBoxer() {
                 console.log(error)
             })
     }, []);
-
-
-
 
 
     return (
