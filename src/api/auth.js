@@ -1,3 +1,5 @@
+import { Redirect } from "react-router";
+
 const TOKEN_KEY = 'session_token';
 
 export const API_URL = process.env.REACT_APP_API_URL
@@ -63,6 +65,7 @@ export function signOut() {
     }).then(resp => {
         if (resp.ok) {
             return removeToken();
+            return <Redirect to='/'/>
         } else {
             console.error({ resp })
             const { status, statusText } = resp;

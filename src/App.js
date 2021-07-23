@@ -48,6 +48,7 @@ function App() {
           <Route path="/fighters/new" exact component={CreateBoxer} render={requireAuth} />
           <Route path="/sign-in" exact component={Login} onSignIn={handleSignIn}/>
           <Route path="/sign-up" exact component={Register} onSignUp={handleSignUp}/>
+          <Route path='/signout' render={signOut} />
         </Switch>
       </Router>
     </div>
