@@ -6,9 +6,9 @@ import axios from "axios";
 function NewFight() {
   const [boxerA, setBoxerA] = useState("");
   const [boxerB, setBoxerB] = useState("");
-  const [user, setUser] = useState("");
   const [timeScheduled, setTimeScheduled] = useState("");
   const [rounds, setRounds] = useState("");
+  const [roundTime, setRoundTime] = useState("");
   const [gym, setGym] = useState("");
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -18,18 +18,17 @@ function NewFight() {
     setLoading(true);
     setIsError(false);
     const data = {
-      boxer_a: boxerA,
-      boxer_b: boxerB,
-      user_id: user,
+      boxer_a_id: boxerA,
+      boxer_b_id: boxerB,
       time_scheduled: timeScheduled,
       rounds: rounds,
+      round_time: roundTime,
       gym_id: gym,
     };
     axios.post("http://localhost:3001/fights", data).then((res) => {
       setData(res.data);
       setBoxerA("");
       setBoxerB("");
-      setCoach("");
       setTimeScheduled("");
       setRounds("");
       setGym("");
@@ -58,23 +57,10 @@ function NewFight() {
           <input
             type="text"
             className="form-control"
-            id="boxer_b"
+            id="boxer_b_id"
             placeholder="Away Boxer"
             value={boxerB}
             onChange={(e) => setBoxerB(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="user" className="mt-2">
-            Coach
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="user"
-            placeholder="Coach"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -84,7 +70,7 @@ function NewFight() {
           <input
             type="number"
             className="form-control"
-            id="timeScheduled"
+            id="time_scheduled"
             placeholder="Time Scheduled"
             value={timeScheduled}
             onChange={(e) => setTimeScheduled(e.target.value)}
@@ -101,6 +87,19 @@ function NewFight() {
             placeholder="Rounds"
             value={rounds}
             onChange={(e) => setRounds(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="roundTime" className="mt-2">
+            Round Time
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="round_time"
+            placeholder="RoundTime"
+            value={roundTime}
+            onChange={(e) => setRoundTime(e.target.value)}
           />
         </div>
         <div className="form-group">
