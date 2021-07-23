@@ -32,7 +32,7 @@ function NewBoxer() {
             stance: stance,
             gym_id: gym,
         }
-        axios.post('http://localhost:3001/boxers/new', data).then(res =>{
+        axios.post('http://localhost:3001/boxers/', data).then(res =>{
             setData(res.data);
             setFirstName('');
             setLastName('');
