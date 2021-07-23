@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import './Navbar.css';
-import auth from '../api/auth';
+import { signOut } from '../api/auth';
+import token from '../App';
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -15,6 +16,7 @@ function Navbar() {
     const [currentUser, setCurrentUser] = useState(undefined);
 
 
+
     const showButton = () => {
         if(window.innerWidth <= 960) {
             setButton(false);
@@ -23,24 +25,20 @@ function Navbar() {
         }
     };
 
-    const logOut = () => {
-        auth.logout();
-      };
 
-    useEffect(() => {
-    const user = auth.getCurrentUser();
-
-    if (user) {
-        setCurrentUser(user);
-    }
-    }, []);
+    var bearerToken = localStorage.getItem('session_token')
     
+    if (bearerToken !== null ) {
+        bearerToken = true;
+        console.log(bearerToken);
+    }
+ 
 
     const showSignIn = () => {
     if (window.innerWidth <= 960) {
         return <li className='nav-item'>
-            <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>
-        </li>
+                    <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>
+               </li>
         }
     }
 
@@ -82,19 +80,12 @@ function Navbar() {
                             </Link>
                         </li>
                         </ul>
-                        {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/sign-out"} className="nav-link">
-                {currentUser.email}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a href="/sign-out" className="nav-link" onClick={logOut}>
-                LogOut
-              </a>
-            </li>
-          </div>
+                        {!!bearerToken ? (
+                            <div className="navbar-nav ml-auto">
+                                <li className="nav-item"> 
+                                    <Button link='/sign-out' buttonStyle='btn--outline' onClick={signOut}>SIGN OUT</Button>
+                                </li>
+                            </div>
 
         ): button && <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>}
    

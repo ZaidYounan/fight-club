@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, React } from 'react'; 
 import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -9,8 +9,33 @@ import Fighters from './components/pages/Fighters';
 import CreateBoxer from './components/pages/CreateBoxer';
 import Login from './components/auth-components/Login';
 import Register from './components/auth-components/Register';
+import { Redirect } from 'react-router';
+import { signIn, signUp, getToken, signOut } from './api/auth';
+
 
 function App() {
+  const [token, setToken] = useState(getToken());
+  const [flash, setFlash] = useState('');
+  const [currentUser, setCurrentUser] = useState(undefined);
+  const signedIn = !!token;
+
+  const requireAuth = render => (props => (
+    signedIn ? render(props) : <Redirect to='/signin' />
+  ));
+
+  const handleSignIn = (email, password) => {
+    signIn(email, password)
+      .then(token => { setToken(token); setFlash('') })
+      .catch(err => { console.dir({ err }); setFlash('Unable to log in')})
+  }
+
+  const handleSignUp = (email, password) => {
+    signUp(email, password)
+      .then(token => { setToken(token) })
+      .catch(error => { console.dir({ error })})
+  }
+
+
   return (
     <div>
       <Router>
@@ -20,9 +45,9 @@ function App() {
           <Route path="/schedule" exact component={Schedule} />
           <Route path="/schedule/new" exact component={ScheduleForm} />
           <Route path="/fighters" exact component={Fighters}/>
-          <Route path="/fighters/new" exact component={CreateBoxer}/>
-          <Route path="/sign-in" exact component={Login}/>
-          <Route path="/sign-up" exact component={Register}/>
+          <Route path="/fighters/new" exact component={CreateBoxer} render={requireAuth} />
+          <Route path="/sign-in" exact component={Login} onSignIn={handleSignIn}/>
+          <Route path="/sign-up" exact component={Register} onSignUp={handleSignUp}/>
         </Switch>
       </Router>
     </div>

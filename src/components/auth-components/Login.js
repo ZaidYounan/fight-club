@@ -2,8 +2,8 @@ import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import auth from "../../api/auth";
 import './Login.css'
+import { signIn } from "../../api/auth";
 
 
 const required = (value) => {
@@ -43,7 +43,7 @@ const Login = (props) => {
         setLoading(true);
 
         if (checkBtn.current.context._errors.length === 0) {
-            auth.login(email, password).then(
+            signIn(email, password).then(
               () => {
                 props.history.push("/schedule");
                 window.location.reload();

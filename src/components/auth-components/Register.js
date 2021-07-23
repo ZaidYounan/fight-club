@@ -3,8 +3,8 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
+import { signUp } from "../../api/auth";
 
-import auth from "../../api/auth";
 
 const required = (value) => {
   if (!value) {
@@ -65,7 +65,7 @@ const Register = (props) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      auth.register(email, password).then(
+      signUp(email, password).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
