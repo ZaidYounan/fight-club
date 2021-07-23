@@ -1,9 +1,11 @@
+import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import auth from "../../api/auth";
+import './Login.css'
+import '../../App.css'
 
-import { isEmail } from "validator";
 
 const required = (value) => {
     if (!value) {
@@ -44,7 +46,7 @@ const Login = (props) => {
         if (checkBtn.current.context._errors.length === 0) {
             auth.login(email, password).then(
               () => {
-                props.history.push("/profile");
+                props.history.push("/schedule");
                 window.location.reload();
               },
               (error) => {
@@ -63,7 +65,6 @@ const Login = (props) => {
             setLoading(false);
           }
         }
-
 
 return (
     <div className="col-md-12">

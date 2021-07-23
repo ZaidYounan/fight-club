@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import './Navbar.css';
+import auth from '../api/auth';
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -11,6 +12,9 @@ function Navbar() {
 
     const closeMobileMenu = () => setClick(false);
 
+    const [currentUser, setCurrentUser] = useState(undefined);
+
+
     const showButton = () => {
         if(window.innerWidth <= 960) {
             setButton(false);
@@ -19,13 +23,25 @@ function Navbar() {
         }
     };
 
-    const showCoach = () => {
+    const logOut = () => {
+        auth.logout();
+      };
+
+    useEffect(() => {
+    const user = auth.getCurrentUser();
+
+    if (user) {
+        setCurrentUser(user);
+    }
+    }, []);
+    
+
+    const showSignIn = () => {
     if (window.innerWidth <= 960) {
         return <li className='nav-item'>
             <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>
         </li>
         }
-        
     }
 
     useEffect(() => {
@@ -65,9 +81,23 @@ function Navbar() {
                                 Contact Us
                             </Link>
                         </li>
-                        {showCoach()}
-                    </ul>
-                    {button && <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>}
+                        </ul>
+                        {currentUser ? (
+          <div className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link to={"/profile"} className="nav-link">
+                {currentUser.username}
+              </Link>
+            </li>
+            <li className="nav-item">
+              <a href="/login" className="nav-link" onClick={logOut}>
+                LogOut
+              </a>
+            </li>
+          </div>
+
+        ): <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>}
+   
                 </div>
             </nav>
         </>
