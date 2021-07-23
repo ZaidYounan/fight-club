@@ -8,6 +8,7 @@ import ScheduleForm from './components/pages/ScheduleForm';
 import Fighters from './components/pages/Fighters';
 import CreateBoxer from './components/pages/CreateBoxer';
 import Login from './components/auth-components/Login';
+import Register from './components/auth-components/Register';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/fighters" exact component={Fighters}/>
           <Route path="/fighters/new" exact component={CreateBoxer}/>
           <Route path="/sign-in" exact component={Login}/>
+          <Route path="/sign-up" exact component={Register}/>
         </Switch>
       </Router>
     </div>

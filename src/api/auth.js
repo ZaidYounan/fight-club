@@ -1,21 +1,22 @@
 import axios from "axios";
-
-const TOKEN_KEY = 'session_token';
+import authHeader from "./authHeader";
 
 export const API_URL = process.env.REACT_APP_API_URL
 
 const register = (email, password) => {
-    return axios.post(API_URL + "/users/sign_up", {
-      email,
-      password,
+    return axios.post(API_URL + "/users/", {
+      user: {
+        email,
+        password },
     });
   };
 
 const login = (email, password) => {
 return axios
     .post(API_URL + "/users/sign_in", {
-    email,
-    password,
+      user: {
+              email,
+              password },
     })
     .then((response) => {
     if (response.data.accessToken) {

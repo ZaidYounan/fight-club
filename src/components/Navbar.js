@@ -85,18 +85,18 @@ function Navbar() {
                         {currentUser ? (
           <div className="navbar-nav ml-auto">
             <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
-                {currentUser.username}
+              <Link to={"/sign-out"} className="nav-link">
+                {currentUser.email}
               </Link>
             </li>
             <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
+              <a href="/sign-out" className="nav-link" onClick={logOut}>
                 LogOut
               </a>
             </li>
           </div>
 
-        ): <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>}
+        ): button && <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>}
    
                 </div>
             </nav>
