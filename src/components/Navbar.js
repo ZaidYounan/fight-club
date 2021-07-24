@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import './Navbar.css';
 import { signOut } from '../api/auth';
-import token from '../App';
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -12,8 +11,6 @@ function Navbar() {
     const handleClick = () => setClick(!click);
 
     const closeMobileMenu = () => setClick(false);
-
-    const [currentUser, setCurrentUser] = useState(undefined);
 
     const [render, setRender] = useState(false)
 
@@ -28,7 +25,6 @@ function Navbar() {
 
 
     const bearerToken = localStorage.getItem('session_token')
-    console.log(bearerToken)
     var token = false;
     
     if (bearerToken !== null && bearerToken.length > 40 ) {
@@ -41,11 +37,12 @@ function Navbar() {
     }
  
     const showSignIn = () => {
-    if (window.innerWidth <= 960) {
-        return <li className='nav-item'>
-                    <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>
-               </li>
-        }
+        if (window.innerWidth <= 960 && !token) {
+            return <li className='nav-item'>
+                        <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>
+                        <Button link='/sign-up' buttonStyle='btn--outline'>REGISTER COACH</Button>
+                </li>
+            }
     }
 
     window.addEventListener('resize', showButton);
@@ -81,18 +78,17 @@ function Navbar() {
                                 Contact Us
                             </Link>
                         </li>
+                        {showSignIn()}
                         </ul>
+                        </div>
+                        <div className="btn-coach-nav">
                         {!!token ? (
-                            <div className="navbar-nav ml-auto">
-                                <li className="nav-item"> 
-                                    <Button link='/sign-out' buttonStyle='btn--outline' 
+                                    button && 
+                                        <Button link='/sign-out' buttonStyle='btn--outline' 
                                     onClick={() => {signOut(); setRender(true);}}> Sign Out</Button>
-                                </li>
-                            </div>
-
-        ): button && <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>}
-   
-                </div>
+                                 ): button && <Button link='/sign-in' buttonStyle='btn--coach'>COACH SIGN IN</Button>}
+                                {!token ? (button && <Button link='/sign-up' buttonStyle='btn--coach'>REGISTER COACH</Button>) : (<></>) }
+                        </div>
             </nav>
         </>
     );
