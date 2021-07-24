@@ -67,7 +67,7 @@ const Register = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       signUp(email, password).then(
         (response) => {
-          setMessage(response.data.message);
+          setMessage('You have successfully registered.');
           setSuccessful(true);
         },
         (error) => {

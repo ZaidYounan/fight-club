@@ -28,15 +28,18 @@ function Navbar() {
 
 
     const bearerToken = localStorage.getItem('session_token')
-
+    console.log(bearerToken)
     var token = false;
     
-    if (bearerToken !== null ) {
+    if (bearerToken !== null && bearerToken.length > 40 ) {
+        console.log(bearerToken)
         token = true;
-        console.log(bearerToken);
+        console.log(typeof bearerToken);
+    } else {
+        token = false;
+        console.log(token);
     }
  
-
     const showSignIn = () => {
     if (window.innerWidth <= 960) {
         return <li className='nav-item'>
@@ -44,10 +47,6 @@ function Navbar() {
                </li>
         }
     }
-
-    useEffect(() => {
-        showButton();
-    }, []);
 
     window.addEventListener('resize', showButton);
 
