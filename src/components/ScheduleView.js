@@ -101,3 +101,5 @@ function ScheduleView() {
     <div>Loading Schedule</div>
   );
 }
+
+export default ScheduleView;
