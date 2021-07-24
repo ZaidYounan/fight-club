@@ -1,14 +1,16 @@
-import { useState } from "react";
-import React from "react";
+import React, { useState } from "react";
 import "./NewFight.css";
 import axios from "axios";
 
 function NewFight() {
   const [boxerA, setBoxerA] = useState("");
   const [boxerB, setBoxerB] = useState("");
-  const [timeScheduled, setTimeScheduled] = useState("");
   const [rounds, setRounds] = useState("");
+  const [timeScheduled, setTimeScheduled] = useState("");
   const [roundTime, setRoundTime] = useState("");
+  const [winner, setWinner] = useState("");
+  const [loser, setLoser] = useState("");
+  const [result, setResult] = useState("");
   const [gym, setGym] = useState("");
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -23,6 +25,9 @@ function NewFight() {
       time_scheduled: timeScheduled,
       rounds: rounds,
       round_time: roundTime,
+      winner_id: winner,
+      loser_id: loser,
+      result: result,
       gym_id: gym,
     };
     axios.post("http://localhost:3001/fights", data).then((res) => {
@@ -31,6 +36,10 @@ function NewFight() {
       setBoxerB("");
       setTimeScheduled("");
       setRounds("");
+      setRoundTime("");
+      setWinner("");
+      setLoser("");
+      setResult("");
       setGym("");
       setLoading(false);
     });
@@ -40,11 +49,13 @@ function NewFight() {
     <div className="container">
       <div style={{ maxWidth: 350 }}>
         <div className="form-group">
-          <label htmlFor="boxerA">Home Boxer</label>
+          <label htmlFor="boxerA" className="mt-2">
+            Home Boxer
+          </label>
           <input
-            type="text"
+            type="number"
             className="form-control"
-            id="boxer_a"
+            id="boxer_a_id"
             placeholder="Home Boxer"
             value={boxerA}
             onChange={(e) => setBoxerA(e.target.value)}
@@ -55,7 +66,7 @@ function NewFight() {
             Away Boxer
           </label>
           <input
-            type="text"
+            type="number"
             className="form-control"
             id="boxer_b_id"
             placeholder="Away Boxer"
@@ -68,7 +79,7 @@ function NewFight() {
             Time Scheduled
           </label>
           <input
-            type="number"
+            type="datetime"
             className="form-control"
             id="time_scheduled"
             placeholder="Time Scheduled"
@@ -76,6 +87,7 @@ function NewFight() {
             onChange={(e) => setTimeScheduled(e.target.value)}
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="rounds" className="mt-2">
             Rounds
@@ -102,6 +114,46 @@ function NewFight() {
             onChange={(e) => setRoundTime(e.target.value)}
           />
         </div>
+        <div className="form-group">
+          <label htmlFor="winner" className="mt-2">
+            Winner
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="winner_id"
+            placeholder="winner"
+            value={winner}
+            onChange={(e) => setWinner(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="loser" className="mt-2">
+            Loser
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="loser_id"
+            placeholder="loser"
+            value={loser}
+            onChange={(e) => setLoser(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="result" className="mt-2">
+            Result
+          </label>
+          <input
+            type="string"
+            className="form-control"
+            id="result"
+            placeholder="Result"
+            value={result}
+            onChange={(e) => setResult(e.target.value)}
+          />
+        </div>
+
         <div className="form-group">
           <label htmlFor="gym" className="mt-2">
             Gym
