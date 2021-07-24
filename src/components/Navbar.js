@@ -15,6 +15,7 @@ function Navbar() {
 
     const [currentUser, setCurrentUser] = useState(undefined);
 
+    const [render, setRender] = useState(false)
 
 
     const showButton = () => {
@@ -26,10 +27,12 @@ function Navbar() {
     };
 
 
-    var bearerToken = localStorage.getItem('session_token')
+    const bearerToken = localStorage.getItem('session_token')
+
+    var token = false;
     
     if (bearerToken !== null ) {
-        bearerToken = true;
+        token = true;
         console.log(bearerToken);
     }
  
@@ -80,10 +83,11 @@ function Navbar() {
                             </Link>
                         </li>
                         </ul>
-                        {!!bearerToken ? (
+                        {!!token ? (
                             <div className="navbar-nav ml-auto">
                                 <li className="nav-item"> 
-                                    <Button link='/sign-out' buttonStyle='btn--outline' onClick={signOut}>SIGN OUT</Button>
+                                    <Button link='/sign-out' buttonStyle='btn--outline' 
+                                    onClick={() => {signOut(); setRender(true);}}> Sign Out</Button>
                                 </li>
                             </div>
 
