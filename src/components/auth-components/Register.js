@@ -4,6 +4,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import { signUp } from "../../api/auth";
+import { useHistory } from "react-router";
 
 
 const required = (value) => {
@@ -40,6 +41,7 @@ const vpassword = (value) => {
 const Register = (props) => {
   const form = useRef();
   const checkBtn = useRef();
+  const history = useHistory();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,8 +69,10 @@ const Register = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       signUp(email, password).then(
         (response) => {
-          setMessage('You have successfully registered.');
+          setMessage(email + ' has successfully registered.');
           setSuccessful(true);
+          history.push("/schedule");
+          window.location.reload();
         },
         (error) => {
           const resMessage =

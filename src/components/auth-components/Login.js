@@ -4,6 +4,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import './Login.css'
 import { signIn } from "../../api/auth";
+import { useHistory } from "react-router";
 
 
 const required = (value) => {
@@ -19,11 +20,14 @@ const required = (value) => {
 const Login = (props) => {
     const form = useRef();
     const checkBtn = useRef();
+    const history = useHistory();
+
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
+
 
 
     const onChangeEmail = (e) => {
@@ -45,7 +49,8 @@ const Login = (props) => {
         if (checkBtn.current.context._errors.length === 0) {
             signIn(email, password).then(
               () => {
-                props.history.push("/schedule");
+                setMessage(email + ' has signed in.')
+                history.push("/schedule");
                 window.location.reload();
               },
               (error) => {
