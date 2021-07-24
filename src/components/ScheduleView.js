@@ -7,6 +7,18 @@ function ScheduleView() {
   const [fights, setFights] = useState([]);
   const [gyms, setGyms] = useState([]);
   const [boxers, setBoxers] = useState([]);
+  const bearerToken = localStorage.getItem("session_token");
+
+  var token = false;
+
+  if (bearerToken !== null && bearerToken.length > 40) {
+    console.log(bearerToken);
+    token = true;
+    console.log(typeof bearerToken);
+  } else {
+    token = false;
+    console.log(token);
+  }
 
   useEffect(() => {
     axios
@@ -89,5 +101,3 @@ function ScheduleView() {
     <div>Loading Schedule</div>
   );
 }
-
-export default ScheduleView;

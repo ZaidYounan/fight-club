@@ -30,6 +30,16 @@
     transition: all 0.3s ease-out;
 }
 
+.btn--coach {
+    background-color: transparent;
+    color: #fff;
+    padding: 2px 10px;
+    margin-right:5px;
+    border: 1px solid var(--primary);
+    transition: all 0.3s ease-out;
+}
+
+
 .btn--medium {
     padding: 8px 20px;
     font-size: 20px;

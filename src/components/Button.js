@@ -2,11 +2,11 @@ import React from 'react';
 import './Button.css';
 import { Link } from 'react-router-dom';
 
-const STYLES = ['btn--primary', 'btn--outline', 'btn--test','btn--schedule'];
+const STYLES = ['btn--primary', 'btn--outline', 'btn--test','btn--schedule', 'btn--coach'];
 
 const SIZES = ['btn--medium', 'btn--large'];
 
-const LINKS = ['/sign-up', '/sign-in', '/schedule','/schedule/new','/fighters', '/fighters/new']
+const LINKS = ['/sign-up', '/sign-in', '/sign-out', '/schedule','/schedule/new','/fighters', '/fighters/new']
 
 export const Button = ({ 
     children, 
