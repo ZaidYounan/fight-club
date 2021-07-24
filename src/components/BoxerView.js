@@ -6,6 +6,21 @@ import { Button } from './Button';
 function BoxerView() {
     const [boxers, setBoxers] = useState([]);
     const [gyms, setGyms] = useState([]);
+    
+    const bearerToken = localStorage.getItem('session_token')
+
+    var token = false;
+    
+    if (bearerToken !== null && bearerToken.length > 40 ) {
+        console.log(bearerToken)
+        token = true;
+        console.log(typeof bearerToken);
+    } else {
+        token = false;
+        console.log(token);
+    }
+
+
 
     useEffect(() => {
         axios.get('http://localhost:3001/boxers/')
@@ -44,7 +59,11 @@ function BoxerView() {
                         })}
                     </div>
                 ))}
-                <Button link='/fighters/new' buttonStyle='btn--schedule'>Add A New Fighter</Button>
+                {!!token ? (<Button link='/fighters/new' buttonStyle='btn--schedule'>
+                    Add A New Fighter
+                    </Button>)
+                    : (<></>)
+                    }
             </div>
         ) : ( 
             <div>Loading Boxers</div> 

@@ -19,7 +19,7 @@ function App() {
   const signedIn = !!token;
 
   const requireAuth = render => (props => (
-    signedIn ? render(props) : <Redirect to='/signin' />
+    signedIn ? render(props) : <Redirect to='/' />
   ));
 
   const handleSignIn = (email, password) => {
@@ -42,9 +42,13 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/schedule" exact component={Schedule} />
-          <Route path="/schedule/new" exact component={ScheduleForm} />
+          <Route path="/schedule/new" render={requireAuth(() => (
+            <ScheduleForm />
+          ))} />
           <Route path="/fighters" exact component={Fighters}/>
-          <Route path="/fighters/new" exact component={CreateBoxer} render={requireAuth} />
+          <Route path="/fighters/new" render={requireAuth(() => (
+            <CreateBoxer />
+          ))} />
           <Route path="/sign-in" exact component={Login} onSignIn={handleSignIn}/>
           <Route path="/sign-up" exact component={Register} onSignUp={handleSignUp}/>
           <Route path='/signout' render={signOut} />
