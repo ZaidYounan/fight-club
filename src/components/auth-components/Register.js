@@ -45,6 +45,7 @@ const Register = (props) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -58,6 +59,11 @@ const Register = (props) => {
     setPassword(password);
   };
 
+  const onChangeConfirmPassword = (e) => {
+    const confirmPassword = e.target.value;
+    setConfirmPassword(confirmPassword);
+  };
+
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -65,27 +71,32 @@ const Register = (props) => {
     setSuccessful(false);
 
     form.current.validateAll();
+    
+    if (password === confirmPassword) {
 
-    if (checkBtn.current.context._errors.length === 0) {
-      signUp(email, password).then(
-        (response) => {
-          setMessage(email + ' has successfully registered.');
-          setSuccessful(true);
-          history.push("/schedule");
-          window.location.reload();
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+      if (checkBtn.current.context._errors.length === 0) {
+        signUp(email, password).then(
+          (response) => {
+            setMessage(email + ' has successfully registered.');
+            setSuccessful(true);
+            history.push("/schedule");
+            window.location.reload();
+          },
+          (error) => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
 
-          setMessage(resMessage);
-          setSuccessful(false);
-        }
-      );
+            setMessage(resMessage);
+            setSuccessful(false);
+          }
+        );
+      }
+    } else {
+      setMessage("Password's don't match!");
     }
   };
 
@@ -122,6 +133,18 @@ const Register = (props) => {
                   name="password"
                   value={password}
                   onChange={onChangePassword}
+                  validations={[required, vpassword]}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <Input
+                  type="password"
+                  className="form-control"
+                  name="confirmPassword"
+                  onChange={onChangeConfirmPassword}
+                  value={confirmPassword}
                   validations={[required, vpassword]}
                 />
               </div>
