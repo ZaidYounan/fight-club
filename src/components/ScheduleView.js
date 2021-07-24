@@ -94,7 +94,7 @@ function ScheduleView() {
         </div>
       ))}
       {!!token ? (
-        <Button link="/fights/new" buttonStyle="btn--schedule">
+        <Button link="/schedule/new" buttonStyle="btn--schedule">
           Schedule a New Fight
         </Button>
       ) : (
