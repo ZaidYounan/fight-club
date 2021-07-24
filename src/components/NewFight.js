@@ -79,7 +79,7 @@ function NewFight() {
             Time Scheduled
           </label>
           <input
-            type="datetime"
+            type="string"
             className="form-control"
             id="time_scheduled"
             placeholder="Time Scheduled"
