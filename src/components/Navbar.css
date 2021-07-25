@@ -44,6 +44,7 @@
     width:35%;
     display:flex;
     justify-content:center;
+    overflow:scroll;
   }
 
   .btn-signout {
@@ -96,6 +97,11 @@
   @media screen and (max-width: 960px) {
     .NavbarItems {
       position: relative;
+    }
+
+    .btn-mobile {
+      display:flex;
+      flex-direction:column;
     }
   
     .nav-menu {
