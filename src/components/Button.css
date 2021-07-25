@@ -31,6 +31,7 @@
     padding: 8px 20px;
     border: 1px solid var(--primary);
     transition: all 0.3s ease-out;
+    text-decoration-skip: box-decoration;
 }
 
 .btn--coach {
@@ -40,6 +41,7 @@
     margin-right:5px;
     border: 1px solid var(--primary);
     transition: all 0.3s ease-out;
+    overflow-wrap:break-word;
 }
 
 
@@ -56,5 +58,11 @@
 .btn--medium:hover, .btn--large:hover {
     background: #fff;
     color: #242424;
+    transition: all 0.3s ease-out;
+}
+
+.btn--primary:hover {
+    background: black;
+    color: #fff;
     transition: all 0.3s ease-out;
 }
