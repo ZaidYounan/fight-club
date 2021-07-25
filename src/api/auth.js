@@ -1,4 +1,3 @@
-import App from "../App";
 import { Redirect } from "react-router";
 
 const TOKEN_KEY = 'session_token';
@@ -12,7 +11,7 @@ export function signIn(email, password) {
     return fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'text/plain'
+            'Content-Type': 'application/json'
         },
         mode: 'cors',
         cache: 'no-cache',
@@ -32,12 +31,12 @@ export function signIn(email, password) {
 
 
 export function signUp(email, password) {
-    const url = "https://fight-club-api.herokuapp.com/users/sign_up";
+    const url = `${API_URL}/users`;
 
     return fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'text/plain'
+            'Content-Type': 'application/json'
         },
         mode: 'cors',
         cache: 'no-cache',
