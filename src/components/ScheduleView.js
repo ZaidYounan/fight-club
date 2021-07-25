@@ -82,7 +82,8 @@ function ScheduleView() {
             }
           })}
 
-          <td>Scheduled Date: {data.time_scheduled}</td>
+          <td>Scheduled Date: {data.date_scheduled}</td>
+          <td>Scheduled Time: {data.time_scheduled}</td>
 
           {gyms.map((gym) => {
             if (gym.id === data.gym_id) {
