@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ScheduleView.css";
 import axios from "axios";
 import { Button } from "./Button";
+import Moment from "react-moment";
 
 function ScheduleView() {
   const [fights, setFights] = useState([]);
@@ -82,7 +83,10 @@ function ScheduleView() {
             }
           })}
 
-          <td>Scheduled Time: {data.short_time}</td>
+          <td>
+            Scheduled Time:{" "}
+            <Moment format="DD/MM/YYYY hh:mm a"> {data.time_scheduled}</Moment>
+          </td>
 
           {gyms.map((gym) => {
             if (gym.id === data.gym_id) {
