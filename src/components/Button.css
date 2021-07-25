@@ -20,6 +20,9 @@
     background-color: #000000;
     color: white;
     border:1px solid black;
+    position:fixed;
+    bottom:1%;
+    right:1%;
 }
 
 .btn--outline {
@@ -28,6 +31,7 @@
     padding: 8px 20px;
     border: 1px solid var(--primary);
     transition: all 0.3s ease-out;
+    text-decoration-skip: box-decoration;
 }
 
 .btn--coach {
@@ -37,12 +41,14 @@
     margin-right:5px;
     border: 1px solid var(--primary);
     transition: all 0.3s ease-out;
+    overflow-wrap:break-word;
 }
 
 
 .btn--medium {
     padding: 8px 20px;
     font-size: 20px;
+    text-decoration-skip: box-decoration;
 }
 
 .btn--large {
@@ -53,5 +59,11 @@
 .btn--medium:hover, .btn--large:hover {
     background: #fff;
     color: #242424;
+    transition: all 0.3s ease-out;
+}
+
+.btn--primary:hover {
+    background: black;
+    color: #fff;
     transition: all 0.3s ease-out;
 }

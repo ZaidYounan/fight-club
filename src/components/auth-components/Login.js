@@ -50,7 +50,7 @@ const Login = (props) => {
             signIn(email, password).then(
               () => {
                 setMessage(email + ' has signed in.')
-                history.push("/schedule");
+                history.push("/");
                 window.location.reload();
               },
               (error) => {

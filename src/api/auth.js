@@ -11,7 +11,7 @@ export function signIn(email, password) {
     return fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'text/plain'
         },
         mode: 'cors',
         cache: 'no-cache',
@@ -36,7 +36,7 @@ export function signUp(email, password) {
     return fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'text/plain'
         },
         mode: 'cors',
         cache: 'no-cache',

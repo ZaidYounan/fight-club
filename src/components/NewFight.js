@@ -4,6 +4,7 @@ import "./NewFight.css";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { API_URL } from "../api/auth";
 
 function NewFight() {
   const [boxers, setBoxers] = useState([]);
@@ -37,7 +38,7 @@ function NewFight() {
       result: result,
       gym_id: gym,
     };
-    axios.post("http://localhost:3001/fights", data).then((res) => {
+    axios.post(`${API_URL}/fights`, data).then((res) => {
       setData(res.data);
       setBoxerA("");
       setBoxerB("");
@@ -49,13 +50,13 @@ function NewFight() {
       setResult("");
       setGym("");
       setLoading(false);
-      history.push("/fights/");
+      history.push("/schedule");
     });
   };
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/boxers/")
+      .get(`${API_URL}/boxers`)
       .then((response) => {
         setBoxers(response.data);
       })
@@ -66,7 +67,7 @@ function NewFight() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/gyms/")
+      .get(`${API_URL}/gyms`)
       .then((response) => {
         setGyms(response.data);
       })

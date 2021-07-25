@@ -6,6 +6,7 @@ import Home from './components/pages/Home';
 import Schedule from './components/pages/Schedule';
 import ScheduleForm from './components/pages/ScheduleForm';
 import Fighters from './components/pages/Fighters';
+import Contact from './components/pages/Contact';
 import CreateBoxer from './components/pages/CreateBoxer';
 import Login from './components/auth-components/Login';
 import Register from './components/auth-components/Register';
@@ -51,6 +52,7 @@ function App() {
           <Route path="/fighters/new" render={requireAuth(() => (
             <CreateBoxer />
           ))} />
+          <Route path="/contact" exact component={Contact} />
           <Route path="/sign-in" exact component={Login} onSignIn={handleSignIn}/>
           <Route path="/sign-up" exact component={Register} onSignUp={handleSignUp}/>
           <Route path='/signout' render={signOut} />

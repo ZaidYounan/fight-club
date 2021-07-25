@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./NewBoxer.css";
 import axios from "axios";
 import { useHistory } from "react-router";
+import { API_URL } from "../api/auth";
 
 function NewBoxer() {
   const [firstName, setFirstName] = useState("");
@@ -17,7 +18,6 @@ function NewBoxer() {
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState(null);
   const history = useHistory();
-  const [preview, setPreview] = useState(null);
 
   const handleSubmit = () => {
     setLoading(true);
@@ -34,7 +34,7 @@ function NewBoxer() {
       avatar: avatar,
     };
     
-    axios.post("http://localhost:3001/boxers", data).then((res) => {
+    axios.post(`${API_URL}/boxers`, data).then((res) => {
       setData(res.data);
       setFirstName("");
       setLastName("");
@@ -51,7 +51,7 @@ function NewBoxer() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/gyms/")
+      .get(`${API_URL}/gyms`)
       .then((response) => {
         setGyms(response.data);
       })
