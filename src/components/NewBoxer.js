@@ -33,8 +33,8 @@ function NewBoxer() {
       gym_id: gym,
       avatar: avatar,
     };
-
-    axios.post("http://localhost:3001/boxers/", data).then((res) => {
+    
+    axios.post("http://localhost:3001/boxers", data).then((res) => {
       setData(res.data);
       setFirstName("");
       setLastName("");
@@ -151,8 +151,8 @@ function NewBoxer() {
           >
             <option value="Please Select A Gym">'Please Select A Gym'</option>
             {gyms.map((gym) => (
-              <option key={gym.value} value={gym.value}>
-                {gym.id} - {gym.name}
+              <option key={gym.value} value={gym.id}>
+                {gym.name}
               </option>
             ))}
           </select>
