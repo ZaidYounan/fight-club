@@ -103,6 +103,7 @@
     .btn-mobile {
       display:flex;
       flex-direction:column;
+      text-decoration-skip: box-decoration;
     }
   
     .nav-menu {

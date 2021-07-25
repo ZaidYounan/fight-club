@@ -3,6 +3,7 @@ import "./ScheduleView.css";
 import axios from "axios";
 import { Button } from "./Button";
 import Moment from "react-moment";
+import { API_URL } from "../api/auth";
 
 function ScheduleView() {
   const [fights, setFights] = useState([]);
@@ -23,7 +24,7 @@ function ScheduleView() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/fights/")
+      .get(`${API_URL}/fights`)
       .then((response) => {
         setFights(response.data);
       })
@@ -34,7 +35,7 @@ function ScheduleView() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/boxers/")
+      .get(`${API_URL}/boxers`)
       .then((response) => {
         setBoxers(response.data);
       })
@@ -45,7 +46,7 @@ function ScheduleView() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/gyms/")
+      .get(`${API_URL}/gyms`)
       .then((response) => {
         setGyms(response.data);
       })

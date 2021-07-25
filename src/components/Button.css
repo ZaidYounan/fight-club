@@ -48,6 +48,7 @@
 .btn--medium {
     padding: 8px 20px;
     font-size: 20px;
+    text-decoration-skip: box-decoration;
 }
 
 .btn--large {

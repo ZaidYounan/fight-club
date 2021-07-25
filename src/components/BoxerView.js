@@ -3,6 +3,7 @@ import './BoxerView.css';
 import axios from 'axios';
 import { Button } from './Button';
 import avatarimg from '../images/avatarimg.jpeg'
+import { API_URL } from '../api/auth';
 
 function BoxerView() {
     const [boxers, setBoxers] = useState([]);
@@ -25,7 +26,7 @@ function BoxerView() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3001/boxers/')
+        axios.get(`${API_URL}/boxers`)
             .then(response => {
                 setBoxers(response.data);
             })
@@ -35,7 +36,7 @@ function BoxerView() {
     }, []);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/gyms/')
+        axios.get(`${API_URL}/gyms`)
             .then(response => {
                 setGyms(response.data);
             })
