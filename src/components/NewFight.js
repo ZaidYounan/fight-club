@@ -50,7 +50,7 @@ function NewFight() {
       setResult("");
       setGym("");
       setLoading(false);
-      history.push("/fights/");
+      history.push("/schedule");
     });
   };
 
