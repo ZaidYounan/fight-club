@@ -31,7 +31,7 @@ export function signIn(email, password) {
 
 
 export function signUp(email, password) {
-    const url = "https://fight-club-api.herokuapp.com/users";
+    const url = "https://fight-club-api.herokuapp.com/users/sign_up";
 
     return fetch(url, {
         method: 'POST',
