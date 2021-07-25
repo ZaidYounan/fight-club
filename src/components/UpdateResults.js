@@ -6,25 +6,25 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function UpdateResult() {
-  const [boxers, setBoxers] = useState([]);
-  const [boxerA, setBoxerA] = useState("");
-  const [boxerB, setBoxerB] = useState("");
-  const [timeScheduled, setTimeScheduled] = useState("");
-  const [rounds, setRounds] = useState("");
-  const [roundTime, setRoundTime] = useState("");
-  const [winner, setWinner] = useState("");
-  const [loser, setLoser] = useState("");
-  const [result, setResult] = useState("");
-  const [gym, setGym] = useState("");
-  const [gyms, setGyms] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [data, setData] = useState(null);
-  const history = useHistory();
+    const [boxers, setBoxers] = useState([]);
+    const [boxerA, setBoxerA] = useState("");
+    const [boxerB, setBoxerB] = useState("");
+    const [timeScheduled, setTimeScheduled] = useState("");
+    const [rounds, setRounds] = useState("");
+    const [roundTime, setRoundTime] = useState("");
+    const [winner, setWinner] = useState("");
+    const [loser, setLoser] = useState("");
+    const [result, setResult] = useState("");
+    const [results, setResults] = useState([]);
+    const [gym, setGym] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [data, setData] = useState(null);
+    const history = useHistory();
 
-  const handleSubmit = () => {
-    setLoading(true);
-    setIsError(false);
+    const handleSubmit = () => {
+        setLoading(true);
+        setIsError(false);
 
     const data = {
       boxer_a_id: boxerA,
@@ -37,6 +37,7 @@ function UpdateResult() {
       result: result,
       gym_id: gym,
     };
+
     axios.patch("http://localhost:3001/fights", data).then((res) => {
       setData(res.data);
       setBoxerA("");
@@ -78,38 +79,34 @@ function UpdateResult() {
   return (
     <div className="container">
       <div style={{ maxWidth: 350 }}>
-        <div className="form-group">
-          <label htmlFor="boxerA" className="mt-2">
-            Home Boxer
-          </label>
-          <div
-            className="form-control"
-            id="boxer_a_id"
-            placeholder="Home Boxer"
-          >
-              {data.boxer}
-          </div>
-        </div>
+        {fights.map((data) => (
+        <div className="fight-cards" key={data.id}>
+          {boxers.map((boxer) => {
+            if (boxer.id === data.boxer_a_id) {
+              return (
+                <div>
+                  {boxer.first_name} {boxer.last_name}
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
+          <div>Vs</div>
 
-        <div className="form-group">
-          <label htmlFor="boxerB" className="mt-2">
-            Away Boxer
-          </label>
-          <select
-            className="form-control"
-            id="boxer_b_id"
-            placeholder="Away Boxer"
-            onChange={(e) => setBoxerB(e.target.value)}
-            onSubmit={(e) => setBoxers(e.target.value)}
-          >
-            <option value="Away Boxer">'Please Select Away Boxer'</option>
-            {boxers.map((boxer) => (
-              <option key={boxer.value} value={boxer.id}>
-                {boxer.first_name} {boxer.last_name}
-              </option>
-            ))}
-          </select>
-        </div>
+          {boxers.map((boxer) => {
+            if (boxer.id === data.boxer_b_id) {
+              return (
+                <div>
+                  {boxer.first_name} {boxer.last_name}
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
+      </div>
+      ))}
 
         <div className="form-group">
           <label htmlFor="timeScheduled" className="mt-2">
@@ -156,7 +153,7 @@ function UpdateResult() {
 
         <div className="form-group">
           <input
-            type="hidden"
+            type="string"
             className="form-control"
             id="winner_id"
             placeholder="winner"
@@ -167,7 +164,7 @@ function UpdateResult() {
 
         <div className="form-group">
           <input
-            type="hidden"
+            type="string"
             className="form-control"
             id="loser_id"
             placeholder="loser"
@@ -177,35 +174,25 @@ function UpdateResult() {
         </div>
 
         <div className="form-group">
-          <input
-            type="hidden"
-            className="form-control"
-            id="result"
-            placeholder="Result"
-            value={result}
-            onChange={(e) => setResult(e.target.value)}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="gym" className="mt-2">
-            Host Gym
+        <label htmlFor="result" className="mt-2">
+            Match Result
           </label>
           <select
             className="form-control"
-            id="gym_id"
-            placeholder="Gym ID"
-            onChange={(e) => setGym(e.target.value)}
-            onSubmit={(e) => setGyms(e.target.value)}
+            id="result"
+            placeholder="Result"
+            onChange={(e) => setResult(e.target.value)}
+            onSubmit={(e) => setResults(e.target.value)}
           >
             <option value="Please Select A Gym">'Please Select A Gym'</option>
-            {gyms.map((gym) => (
-              <option key={gym.value} value={gym.id}>
-                {gym.name}
-              </option>
+            {results.map((result) => (
+                <option key={result.value} value={result.id}>
+                 {result.text}
+                </option>
             ))}
-          </select>
+            </select>
         </div>
+
 
         {isError && (
           <small className="mt-3 d-inline-block text-danger">
@@ -233,4 +220,4 @@ function UpdateResult() {
   );
 }
 
-export default NewFight;
+export default UpdateResults;
