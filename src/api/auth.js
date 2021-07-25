@@ -4,6 +4,9 @@ const TOKEN_KEY = 'session_token';
 
 export const API_URL = process.env.REACT_APP_API_URL
 
+var cors = require('cors')
+
+app.use(cors())
 
 export function signIn(email, password) {
     const url = `${API_URL}/users/sign_in`
