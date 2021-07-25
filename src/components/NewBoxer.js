@@ -17,7 +17,6 @@ function NewBoxer() {
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState(null);
   const history = useHistory();
-  const [preview, setPreview] = useState(null);
 
   const handleSubmit = () => {
     setLoading(true);

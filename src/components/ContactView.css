@@ -1,0 +1,50 @@
+
+.image-container {
+    background:url('../images/image-2.jpeg') right no-repeat;
+    height:100vh;
+    min-width:50%;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+    float:right;
+}
+
+div.contact-container {
+    margin:0;
+    margin-right:0;
+    width:100vw;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    flex-direction:row;
+    justify-content:flex-end;
+    overflow:scroll;
+}
+
+.info-container {
+    width:50vw;
+    padding:5%;
+    overflow:scroll;
+}
+
+h1 {
+    margin-bottom:5%;
+}
+
+@media screen and (max-width: 600px) {
+
+    div.contact-container {
+        flex-direction:column;
+        justify-content:flex-start;
+    }
+
+    .image-container {
+        position:fixed;
+        bottom:0%;
+        height:35%;
+        width:100vw;
+        
+    }
+
+    .info-container {
+        width:90vw;
+    }
+  }
