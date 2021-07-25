@@ -85,7 +85,7 @@ function Navbar() {
                         {!!token ? (
                                     button && 
                                         <Button link='/sign-out' buttonStyle='btn--outline' 
-                                    onClick={() => {signOut(); setRender(true);}}> Sign Out</Button>
+                                    onClick={() => {signOut(); setRender(true);}}> SIGN OUT</Button>
                                  ): button && <Button link='/sign-in' buttonStyle='btn--coach'>COACH SIGN IN</Button>}
                                 {!token ? (button && <Button link='/sign-up' buttonStyle='btn--coach'>REGISTER COACH</Button>) : (<></>) }
                         </div>
