@@ -29,7 +29,7 @@ h1 {
     margin-bottom:5%;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
 
     div.contact-container {
         flex-direction:column;
