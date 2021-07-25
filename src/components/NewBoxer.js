@@ -12,10 +12,12 @@ function NewBoxer() {
   const [stance, setStance] = useState("");
   const [gym, setGym] = useState("");
   const [gyms, setGyms] = useState([]);
+  const [avatar, setAvatar] = useState("");
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState(null);
   const history = useHistory();
+  const [preview, setPreview] = useState(null);
 
   const handleSubmit = () => {
     setLoading(true);
@@ -29,8 +31,10 @@ function NewBoxer() {
       reach: reach,
       stance: stance,
       gym_id: gym,
+      avatar: avatar,
     };
-    axios.post("http://localhost:3001/boxers/new", data).then((res) => {
+
+    axios.post("http://localhost:3001/boxers/", data).then((res) => {
       setData(res.data);
       setFirstName("");
       setLastName("");
@@ -39,6 +43,7 @@ function NewBoxer() {
       setReach("");
       setStance("");
       setGym("");
+      setAvatar("");
       setLoading(false);
       history.push("/fighters/");
     });
@@ -54,6 +59,7 @@ function NewBoxer() {
         console.log(error);
       });
   }, []);
+
 
   return (
     <div className="container">
@@ -150,6 +156,20 @@ function NewBoxer() {
               </option>
             ))}
           </select>
+        </div>
+        <div>
+          <label htmlFor="height" className="mt-2">
+              Choose An Avatar
+          </label>
+          <input
+              type="file"
+              className="form-control"
+              id="avatar"
+              placeholder="Avatar"
+              onChange={(e) => setAvatar(e.target.value)}
+              value={avatar}
+              src={avatar}
+            />
         </div>
 
         {isError && (

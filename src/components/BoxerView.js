@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './BoxerView.css';
 import axios from 'axios';
 import { Button } from './Button';
+import avatarimg from '../images/avatarimg.jpeg'
 
 function BoxerView() {
     const [boxers, setBoxers] = useState([]);
@@ -19,6 +20,7 @@ function BoxerView() {
         token = false;
         console.log(token);
     }
+
 
 
 
@@ -47,6 +49,7 @@ function BoxerView() {
             <div className="boxer-container">
                 {boxers.map((data) => (
                     <div className="boxer-cards" key={data.id}> 
+                        <img src={avatarimg} width={300} height={300}/>
                         <td>Name: {data.first_name} {data.last_name}</td>           
                         <td>Height: {data.height}cm</td>
                         <td>Weight: {data.weight}kg</td>

@@ -11,6 +11,8 @@ import Login from './components/auth-components/Login';
 import Register from './components/auth-components/Register';
 import { Redirect } from 'react-router';
 import { signIn, signUp, getToken, signOut } from './api/auth';
+import * as ActiveStorage from "activestorage";
+ActiveStorage.start()
 
 function App() {
   const [token, setToken] = useState(getToken());
