@@ -27,6 +27,7 @@ const Login = (props) => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
+    const [success, setSuccess] = useState(false);
 
 
 
@@ -51,6 +52,7 @@ const Login = (props) => {
               () => {
                 setMessage(email + ' has signed in.')
                 history.push("/");
+                setSuccess(true);
               },
               (error) => {
                 const resMessage =
