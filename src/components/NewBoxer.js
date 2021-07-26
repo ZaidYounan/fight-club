@@ -13,15 +13,21 @@ function NewBoxer() {
   const [stance, setStance] = useState("");
   const [gym, setGym] = useState("");
   const [gyms, setGyms] = useState([]);
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState(null);
+  const [formData, setFormData] = useState("");
   const history = useHistory();
 
   const handleSubmit = () => {
     setLoading(true);
     setIsError(false);
+
+    const formData = new FormData();
+    formData.append('file',avatar);
+    
+
 
     const data = {
       first_name: firstName,
@@ -33,7 +39,7 @@ function NewBoxer() {
       gym_id: gym,
       avatar: avatar,
     };
-    
+  
     axios.post(`${API_URL}/boxers`, data).then((res) => {
       setData(res.data);
       setFirstName("");
@@ -166,7 +172,8 @@ function NewBoxer() {
               className="form-control"
               id="avatar"
               placeholder="Avatar"
-              onChange={(e) => setAvatar(e.target.value)}
+              onChange={(e) => setAvatar(e.target.value)
+            }
               value={avatar}
               src={avatar}
             />
