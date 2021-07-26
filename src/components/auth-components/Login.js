@@ -17,6 +17,11 @@ const required = (value) => {
     }
   };
 
+function useForceUpdate(){
+  const [value, setValue] = useState(0); 
+  return () => setValue(value => value + 1); 
+}
+
 const Login = (props) => {
     const form = useRef();
     const checkBtn = useRef();
@@ -27,8 +32,7 @@ const Login = (props) => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
-    const [success, setSuccess] = useState(false);
-
+    const forceUpdate = useForceUpdate();
 
 
     const onChangeEmail = (e) => {
@@ -52,7 +56,6 @@ const Login = (props) => {
               () => {
                 setMessage(email + ' has signed in.')
                 history.push("/");
-                setSuccess(true);
               },
               (error) => {
                 const resMessage =
@@ -106,7 +109,7 @@ return (
             </div>
 
             <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
+            <button className="btn btn-primary btn-block" disabled={loading} onClick={forceUpdate}>
                 {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
                 )}
