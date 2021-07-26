@@ -17,7 +17,6 @@ function NewBoxer() {
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState(null);
-  const [formData, setFormData] = useState("");
   const history = useHistory();
 
   const handleSubmit = () => {
@@ -26,7 +25,6 @@ function NewBoxer() {
 
     const formData = new FormData();
     formData.append('file',avatar);
-    
 
 
     const data = {
