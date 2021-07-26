@@ -8,12 +8,10 @@ import { signOut } from '../api/auth';
 function Navbar() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
-
     const handleClick = () => setClick(!click);
-
     const closeMobileMenu = () => setClick(false);
-
-    const [render, setRender] = useState(false)
+    const [render, setRender] = useState(false);
+    const [login, setLogin] = useState(false);
 
 
     const showButton = () => {
@@ -83,7 +81,7 @@ function Navbar() {
                         </ul>
                         </div>
                         <div className="btn-coach-nav">
-                        {!!token ? (
+                        {!!token ? (setLogin(true),
                                     button && 
                                         <Button link='/sign-out' buttonStyle='btn--outline' 
                                     onClick={() => {signOut(); setRender(true);}}> SIGN OUT</Button>
