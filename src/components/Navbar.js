@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import './Navbar.css';
+import '../App.css';
 import { signOut } from '../api/auth';
 
 function Navbar() {
