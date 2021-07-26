@@ -5,13 +5,19 @@ import './Navbar.css';
 import '../App.css';
 import { signOut } from '../api/auth';
 
+
+
 function Navbar() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
+
+
     const handleClick = () => setClick(!click);
+
     const closeMobileMenu = () => setClick(false);
+
     const [render, setRender] = useState(false);
-    const [login, setLogin] = useState(false);
+
 
 
     const showButton = () => {
@@ -27,7 +33,7 @@ function Navbar() {
     var token = false;
     
     if (bearerToken !== null && bearerToken.length > 40 ) {
-        console.log(bearerToken)
+            console.log(bearerToken);
         token = true;
         console.log(typeof bearerToken);
     } else {
@@ -81,7 +87,7 @@ function Navbar() {
                         </ul>
                         </div>
                         <div className="btn-coach-nav">
-                        {!!token ? (setLogin(true),
+                        {!!token ? (
                                     button && 
                                         <Button link='/sign-out' buttonStyle='btn--outline' 
                                     onClick={() => {signOut(); setRender(true);}}> SIGN OUT</Button>

@@ -13,13 +13,13 @@ import Login from './components/auth-components/Login';
 import Register from './components/auth-components/Register';
 import { Redirect } from 'react-router';
 import { signIn, signUp, getToken, signOut } from './api/auth';
-import * as ActiveStorage from "activestorage";
-ActiveStorage.start()
+
+
+
 
 function App() {
   const [token, setToken] = useState(getToken());
   const [flash, setFlash] = useState('');
-  const [currentUser, setCurrentUser] = useState(undefined);
   const signedIn = !!token;
 
   const requireAuth = render => (props => (
@@ -28,7 +28,7 @@ function App() {
 
   const handleSignIn = (email, password) => {
     signIn(email, password)
-      .then(token => { setToken(token); setFlash('') })
+      .then(token => { setToken(token); setFlash(''); })
       .catch(err => { console.dir({ err }); setFlash('Unable to log in')})
   }
 
@@ -38,28 +38,35 @@ function App() {
       .catch(error => { console.dir({ error })})
   }
 
+  const renderNav = () => {
+    if (signedIn) {
+      return <Navbar/>
+    }
+  }
 
   return (
     <div>
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/about" exact component={About} />
-          <Route path="/schedule" exact component={Schedule} />
-          <Route path="/schedule/new" render={requireAuth(() => (
-            <ScheduleForm />
-          ))} />
-          <Route path="/fighters" exact component={Fighters}/>
-          <Route path="/fighters/new" render={requireAuth(() => (
-            <CreateBoxer />
-          ))} />
-          <Route path="/contact" exact component={Contact} />
-          <Route path="/sign-in" exact component={Login} onSignIn={handleSignIn}/>
-          <Route path="/sign-up" exact component={Register} onSignUp={handleSignUp}/>
-          <Route path='/signout' render={signOut} />
-        </Switch>
-      </Router>
+        <Router>
+          <Route component={Navbar} render={renderNav(() => (
+              <Navbar />
+            ))} />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/about" exact component={About} />
+            <Route path="/schedule" exact component={Schedule} />
+            <Route path="/schedule/new" render={requireAuth(() => (
+              <ScheduleForm />
+            ))} />
+            <Route path="/fighters" exact component={Fighters}/>
+            <Route path="/fighters/new" render={requireAuth(() => (
+              <CreateBoxer />
+            ))} />
+            <Route path="/contact" exact component={Contact} />
+            <Route path="/sign-in" exact component={Login} onSignIn={handleSignIn}/>
+            <Route path="/sign-up" exact component={Register} onSignUp={handleSignUp}/>
+            <Route path='/signout' render={signOut} />
+          </Switch>
+        </Router>
     </div>
   );
 }

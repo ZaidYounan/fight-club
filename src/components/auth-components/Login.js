@@ -17,10 +17,6 @@ const required = (value) => {
     }
   };
 
-function useForceUpdate(){
-  const [value, setValue] = useState(0); 
-  return () => setValue(value => value + 1); 
-}
 
 const Login = (props) => {
     const form = useRef();
@@ -32,7 +28,6 @@ const Login = (props) => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
-    const forceUpdate = useForceUpdate();
 
 
     const onChangeEmail = (e) => {
@@ -109,7 +104,7 @@ return (
             </div>
 
             <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading} onClick={forceUpdate}>
+            <button className="btn btn-primary btn-block" disabled={loading}>
                 {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
                 )}
