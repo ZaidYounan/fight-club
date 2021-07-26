@@ -96,6 +96,13 @@ function ScheduleView() {
               return null;
             }
           })}
+
+        <div>
+        <Button link="/schedule/new" buttonStyle="btn--schedule">
+          Update Results
+        </Button>
+        </div>
+
         </div>
       ))}
       {!!token ? (

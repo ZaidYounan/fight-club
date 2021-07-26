@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import Schedule from './components/pages/Schedule';
 import ScheduleForm from './components/pages/ScheduleForm';
+import ResultsForm from './components/pages/ResultsForm';
 import Fighters from './components/pages/Fighters';
 import Contact from './components/pages/Contact';
 import CreateBoxer from './components/pages/CreateBoxer';
@@ -45,6 +46,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/schedule" exact component={Schedule} />
+          <Route path="/schedule/${fight.id}" exact component={ResultsForm} />
           <Route path="/schedule/new" render={requireAuth(() => (
             <ScheduleForm />
           ))} />

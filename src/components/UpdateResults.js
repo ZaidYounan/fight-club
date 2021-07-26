@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import "./NewFight.css";
+import "./UpdateResults.css";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function UpdateResult() {
+function UpdateResults() {
+    const [fights, setFights] = useState([]);
     const [boxers, setBoxers] = useState([]);
     const [boxerA, setBoxerA] = useState("");
     const [boxerB, setBoxerB] = useState("");
@@ -67,9 +68,9 @@ function UpdateResult() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/gyms/")
+      .get("http://localhost:3001/fights/")
       .then((response) => {
-        setGyms(response.data);
+        setFights(response.data);
       })
       .catch((error) => {
         console.log(error);
