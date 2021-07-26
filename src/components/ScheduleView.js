@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./ScheduleView.css";
 import axios from "axios";
 import { Button } from "./Button";
-import Moment from "react-moment";
 import { API_URL } from "../api/auth";
+import {Link} from "react-router-dom";
 
 function ScheduleView() {
   const [fights, setFights] = useState([]);
@@ -60,6 +60,7 @@ function ScheduleView() {
       {fights.map((data) => (
         <div className="fight-cards" key={data.id}>
           {boxers.map((boxer) => {
+            
             if (boxer.id === data.boxer_a_id) {
               return (
                 <div>
@@ -84,10 +85,9 @@ function ScheduleView() {
             }
           })}
 
-          <td>
-            Scheduled Time:{" "}
-            <Moment format="DD/MM/YYYY hh:mm a"> {data.time_scheduled}</Moment>
-          </td>
+          <div>
+             Scheduled Date: {data.time_scheduled}
+          </div>
 
           {gyms.map((gym) => {
             if (gym.id === data.gym_id) {
@@ -98,9 +98,18 @@ function ScheduleView() {
           })}
 
         <div>
-        <Button link="/schedule/new" buttonStyle="btn--schedule">
-          Update Results
-        </Button>
+        {((boxer) => {
+            if (boxer.id === data.winner_id) {
+              return (
+                <div>
+                  Winner: {boxer.first_name} {boxer.last_name}
+                </div>
+              );
+            } else {
+              return (
+              <Link to={"/schedule/" + data.id}>Update Results</Link>
+        )}
+          })}
         </div>
 
         </div>

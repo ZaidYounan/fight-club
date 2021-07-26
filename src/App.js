@@ -46,10 +46,10 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/schedule" exact component={Schedule} />
-          <Route path="/schedule/${fight.id}" exact component={ResultsForm} />
           <Route path="/schedule/new" render={requireAuth(() => (
             <ScheduleForm />
-          ))} />
+            ))} />
+          <Route path="/schedule/:id" exact component={ResultsForm} />
           <Route path="/fighters" exact component={Fighters}/>
           <Route path="/fighters/new" render={requireAuth(() => (
             <CreateBoxer />

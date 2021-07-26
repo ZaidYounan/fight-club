@@ -2,25 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import "./UpdateResults.css";
 import axios from "axios";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { API_URL } from "../api/auth";
 
 function UpdateResults() {
-    const [fights, setFights] = useState([]);
-    const [boxers, setBoxers] = useState([]);
-    const [boxerA, setBoxerA] = useState("");
-    const [boxerB, setBoxerB] = useState("");
-    const [timeScheduled, setTimeScheduled] = useState("");
     const [rounds, setRounds] = useState("");
     const [roundTime, setRoundTime] = useState("");
     const [winner, setWinner] = useState("");
     const [loser, setLoser] = useState("");
     const [result, setResult] = useState("");
-    const [results, setResults] = useState([]);
-    const [gym, setGym] = useState("");
+    const [setResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [data, setData] = useState(null);
+    const [data] = useState(null);
     const history = useHistory();
 
     const handleSubmit = () => {
@@ -28,105 +21,41 @@ function UpdateResults() {
         setIsError(false);
 
     const data = {
-      boxer_a_id: boxerA,
-      boxer_b_id: boxerB,
-      time_scheduled: timeScheduled,
       rounds: rounds,
       round_time: roundTime,
       winner_id: winner,
       loser_id: loser,
       result: result,
-      gym_id: gym,
     };
 
-    axios.patch("http://localhost:3001/fights", data).then((res) => {
-      setData(res.data);
-      setBoxerA("");
-      setBoxerB("");
-      setTimeScheduled("");
+    axios.patch(`${API_URL}/fights/1`, data).then((res) => {
       setRounds("");
       setRoundTime("");
       setWinner("");
       setLoser("");
       setResult("");
-      setGym("");
       setLoading(false);
       history.push("/fights/");
     });
   };
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/boxers/")
-      .then((response) => {
-        setBoxers(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/fights/")
-      .then((response) => {
-        setFights(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const resultsArr = [
+    {value: 'Draw',   text: 'Draw'  },
+    {value: 'majority decision', text: 'Majority Decision'   },
+    {value: 'KO', text: 'KO'},
+    {value: 'TKO',   text: 'TKO'  },
+    {value: 'ND',   text: 'ND'  },
+    {value: 'DQ',   text: 'DQ'  }
+  ];
 
   return (
     <div className="container">
+      <h1>Match Results</h1>
       <div style={{ maxWidth: 350 }}>
-        {fights.map((data) => (
-        <div className="fight-cards" key={data.id}>
-          {boxers.map((boxer) => {
-            if (boxer.id === data.boxer_a_id) {
-              return (
-                <div>
-                  {boxer.first_name} {boxer.last_name}
-                </div>
-              );
-            } else {
-              return null;
-            }
-          })}
-          <div>Vs</div>
-
-          {boxers.map((boxer) => {
-            if (boxer.id === data.boxer_b_id) {
-              return (
-                <div>
-                  {boxer.first_name} {boxer.last_name}
-                </div>
-              );
-            } else {
-              return null;
-            }
-          })}
-      </div>
-      ))}
-
-        <div className="form-group">
-          <label htmlFor="timeScheduled" className="mt-2">
-            Date Scheduled
-          </label>
-          <DatePicker
-            id="time_scheduled"
-            selected={timeScheduled}
-            onChange={(date) => setTimeScheduled(date)}
-            timeInputLabel="Time:"
-            dateFormat="dd/MM/yyy h:mm aa"
-            showTimeInput
-            timeIntervals={15}
-          />
-        </div>
 
         <div className="form-group">
           <label htmlFor="rounds" className="mt-2">
-            Rounds
+            Rounds Total
           </label>
           <input
             type="number"
@@ -140,19 +69,22 @@ function UpdateResults() {
 
         <div className="form-group">
           <label htmlFor="roundTime" className="mt-2">
-            Round Time
+            Time into Round
           </label>
           <input
             type="number"
             className="form-control"
             id="round_time"
-            placeholder="RoundTime"
+            placeholder="Minutes"
             value={roundTime}
             onChange={(e) => setRoundTime(e.target.value)}
           />
         </div>
 
         <div className="form-group">
+        <label htmlFor="winner" className="mt-2">
+            Winner of Match
+          </label>
           <input
             type="string"
             className="form-control"
@@ -164,6 +96,9 @@ function UpdateResults() {
         </div>
 
         <div className="form-group">
+        <label htmlFor="loser" className="mt-2">
+            Looser
+          </label>
           <input
             type="string"
             className="form-control"
@@ -185,9 +120,8 @@ function UpdateResults() {
             onChange={(e) => setResult(e.target.value)}
             onSubmit={(e) => setResults(e.target.value)}
           >
-            <option value="Please Select A Gym">'Please Select A Gym'</option>
-            {results.map((result) => (
-                <option key={result.value} value={result.id}>
+            {resultsArr.map((result) => (
+                <option key={result.value} value={result.value}>
                  {result.text}
                 </option>
             ))}
