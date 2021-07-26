@@ -22,7 +22,9 @@ export function signIn(email, password) {
             const token = resp.headers.get('Authorization');
             console.dir({ token })
             return setToken(token)
-            return <Redirect to='/'/>
+            if (token == null && token.length < 40) {
+                return <div>"Wrong email or password"</div>
+            }
         } else {
             const { status, statusText } = resp;
             return Promise.reject({ status, statusText });
@@ -46,7 +48,6 @@ export function signUp(email, password) {
         if (resp.ok) {
             const token = resp.headers.get('Authorization');
             return setToken(token);
-            return <Redirect to='/'/>
         } else {
             const { status, statusText } = resp;
             return Promise.reject({ status, statusText });

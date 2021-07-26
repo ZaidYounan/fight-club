@@ -24,6 +24,7 @@ function App() {
 
   const requireAuth = render => (props => (
     signedIn ? render(props) : <Redirect to='/' />
+    //Require user to be signed in otherwise redirect to index
   ));
 
   const handleSignIn = (email, password) => {
@@ -41,8 +42,10 @@ function App() {
   const renderNav = () => {
     if (signedIn) {
       return <Navbar/>
+      //Function to re-render Navbar if signed in
     }
   }
+
 
   return (
     <div>

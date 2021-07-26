@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import { isEmail } from "validator";
 import './Login.css'
 import { signIn } from "../../api/auth";
 import { useHistory } from "react-router";
@@ -35,6 +36,16 @@ const Login = (props) => {
         setEmail(email);
     };
 
+    const eMail = value => {
+      if (!isEmail(value)) {
+        return (
+          <div className="alert alert-danger" role="alert">
+            This is not a valid email.
+          </div>
+        );
+      }
+    };
+
     const onChangePassword = (e) => {
         const password = e.target.value;
         setPassword(password);
@@ -45,6 +56,8 @@ const Login = (props) => {
     
         setMessage("");
         setLoading(true);
+
+        form.current.validateAll();
 
         if (checkBtn.current.context._errors.length === 0) {
             signIn(email, password).then(
@@ -69,6 +82,7 @@ const Login = (props) => {
           }
         }
 
+
 return (
     <div className="container">
         <div className="card card-container">
@@ -87,7 +101,7 @@ return (
                 name="email"
                 value={email}
                 onChange={onChangeEmail}
-                validations={[required]}
+                validations={[required, eMail]}
             />
             </div>
 
