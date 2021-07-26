@@ -24,7 +24,7 @@ function BoxerView() {
 
 
 
-
+    //Get the Boxers data
     useEffect(() => {
         axios.get(`${API_URL}/boxers`)
             .then(response => {
@@ -35,6 +35,7 @@ function BoxerView() {
             })
     }, []);
 
+    //Get the Gyms data
     useEffect(() => {
         axios.get(`${API_URL}/gyms`)
             .then(response => {
@@ -52,8 +53,9 @@ function BoxerView() {
                     <div className="boxer-cards" key={data.id}> 
                         <img src={avatarimg} width={300} height={300}/>
                         <td>Name: {data.first_name} {data.last_name}</td>           
-                        <td>Height: {data.height}cm</td>
-                        <td>Weight: {data.weight}kg</td>
+                        <td>Height: {data.height} cm</td>
+                        <td>Weight: {data.weight} kg</td>
+                        <td>Reach: {data.reach } inches</td>
                             { gyms.map((gym) => {
                                 if (gym.id === data.gym_id) {
                                     return <div>Gym: {gym.name} <p>{gym.address}</p></div>
