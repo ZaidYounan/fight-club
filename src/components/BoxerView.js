@@ -56,7 +56,7 @@ function BoxerView() {
                         <td>Weight: {data.weight}kg</td>
                             { gyms.map((gym) => {
                                 if (gym.id === data.gym_id) {
-                                    return <div>Gym: {gym.name}</div>
+                                    return <div>Gym: {gym.name} <p>{gym.address}</p></div>
                                 } else {
                                 return null
                             }

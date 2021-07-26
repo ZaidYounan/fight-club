@@ -14,4 +14,5 @@
     justify-content:center;
     flex-direction:column;
     border:solid black 1px;
+    box-shadow: 5px 10px 18px;
 }
