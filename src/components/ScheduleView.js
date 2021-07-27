@@ -3,7 +3,7 @@ import "./ScheduleView.css";
 import axios from "axios";
 import { Button } from "./Button";
 import { API_URL } from "../api/auth";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function ScheduleView() {
   const [fights, setFights] = useState([]);
@@ -32,7 +32,7 @@ function ScheduleView() {
         console.log(error);
       });
 
-      axios
+    axios
       .get(`${API_URL}/boxers`)
       .then((response) => {
         setBoxers(response.data);
@@ -41,7 +41,7 @@ function ScheduleView() {
         console.log(error);
       });
 
-      axios
+    axios
       .get(`${API_URL}/gyms`)
       .then((response) => {
         setGyms(response.data);
@@ -58,7 +58,7 @@ function ScheduleView() {
       {fights.map((data) => (
         <div className="fight-cards" key={data.id}>
           {boxers.map((boxer) => {
-            
+
             if (boxer.id === data.boxer_a_id) {
               return (
                 <div>
@@ -84,7 +84,7 @@ function ScheduleView() {
           })}
 
           <div>
-             Scheduled Date: {data.time_scheduled}
+            Scheduled Date: {data.time_scheduled}
           </div>
 
           {gyms.map((gym) => {
@@ -94,23 +94,25 @@ function ScheduleView() {
               return null;
             }
           })}
-        <div>
-        <Link to={"/schedule/" + data.id}>Update Results</Link>
-        </div>
 
-        <div>
-        {((boxer) => {
-            if (boxer.id === data.winner_id) {
-              return (
-                <div>
-                  Winner: {boxer.first_name} {boxer.last_name}
-                </div>
-              );
-            } else {
-              return null;
-        }
-          })}
-        </div>
+          {/* Ran out to time to refactor code to only show link if no data in winner.id */}
+          <div>
+            <Link to={"/schedule/" + data.id}>Update Results</Link>
+          </div>
+
+          <div>
+            {boxers.map((boxer) => {
+              if (boxer.id === data.winner_id) {
+                return (
+                  <div>
+                    Winner: {boxer.first_name} {boxer.last_name}
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </div>
 
         </div>
       ))}
