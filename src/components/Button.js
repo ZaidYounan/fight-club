@@ -6,7 +6,7 @@ const STYLES = ['btn--primary', 'btn--outline', 'btn--test','btn--schedule', 'bt
 
 const SIZES = ['btn--medium', 'btn--large'];
 
-const LINKS = ['/sign-up', '/sign-in', '/sign-out', '/schedule','/schedule/new','/fighters', '/fighters/new','/contact','/about',]
+const LINKS = ['/sign-up', '/sign-in', '/sign-out', '/schedule','/schedule/new', '/schedule/edit','/fighters', '/fighters/new','/contact', '/about']
 
 export const Button = ({ 
     children, 

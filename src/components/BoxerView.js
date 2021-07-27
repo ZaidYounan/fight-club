@@ -22,9 +22,7 @@ function BoxerView() {
         console.log(token);
     }
 
-
-
-    //Get the Boxers data
+    //Get the Boxers and Gyms data
     useEffect(() => {
         axios.get(`${API_URL}/boxers`)
             .then(response => {
@@ -33,10 +31,7 @@ function BoxerView() {
             .catch(error => {
                 console.log(error)
             })
-    }, []);
 
-    //Get the Gyms data
-    useEffect(() => {
         axios.get(`${API_URL}/gyms`)
             .then(response => {
                 setGyms(response.data);
@@ -44,6 +39,7 @@ function BoxerView() {
             .catch(error => {
                 console.log(error)
             })
+
     }, []);
 
     return (

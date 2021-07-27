@@ -6,6 +6,7 @@ import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Schedule from './components/pages/Schedule';
 import ScheduleForm from './components/pages/ScheduleForm';
+import ResultsForm from './components/pages/ResultsForm';
 import Fighters from './components/pages/Fighters';
 import Contact from './components/pages/Contact';
 import CreateBoxer from './components/pages/CreateBoxer';
@@ -60,6 +61,10 @@ function App() {
             <Route path="/schedule/new" render={requireAuth(() => (
               <ScheduleForm />
             ))} />
+            <Route path="/schedule/:id" exact render={({ match }) => {
+              const id = match.params.id;
+              return (<ResultsForm id={id} />)
+            }}/>
             <Route path="/fighters" exact component={Fighters}/>
             <Route path="/fighters/new" render={requireAuth(() => (
               <CreateBoxer />
