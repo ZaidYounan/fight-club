@@ -89,7 +89,7 @@ function ScheduleView() {
 
           {gyms.map((gym) => {
             if (gym.id === data.gym_id) {
-              return <div>@{gym.name}</div>;
+              return <div>Location: {gym.name}</div>;
             } else {
               return null;
             }
