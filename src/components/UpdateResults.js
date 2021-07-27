@@ -51,9 +51,11 @@ function UpdateResults({ id }) {
 
   return (
     <div className="container">
-      <h1>Match Results</h1>
+
       <div style={{ maxWidth: 350 }}>
 
+      <h1>Match Results</h1>
+      <br></br>
         <div className="form-group">
           <label htmlFor="rounds" className="mt-2">
             Rounds Total
