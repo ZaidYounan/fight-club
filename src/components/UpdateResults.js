@@ -40,7 +40,7 @@ function UpdateResults({ id }) {
       setLoser("");
       setResult("");
       setLoading(false);
-      history.push("/schedule/");
+      history.push("/schedule");
     });
   };
 
