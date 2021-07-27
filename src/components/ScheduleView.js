@@ -4,6 +4,9 @@ import axios from "axios";
 import { Button } from "./Button";
 import { API_URL } from "../api/auth";
 import { Link } from "react-router-dom";
+import avatarimg from '../images/avatarimg.jpeg'
+import moment from "moment";
+
 
 function ScheduleView() {
   const [fights, setFights] = useState([]);
@@ -62,34 +65,37 @@ function ScheduleView() {
     <div className="fight-container">
       {fights.map((data) => (
         <div className="fight-cards" key={data.id}>
-          {boxers.map((boxer) => {
+          <div className="boxers">
+              {boxers.map((boxer) => {
 
-            if (boxer.id === data.boxer_a_id) {
-              return (
-                <div>
-                  {boxer.first_name} {boxer.last_name}
-                </div>
-              );
-            } else {
-              return null;
-            }
-          })}
-          <div>Vs</div>
+                if (boxer.id === data.boxer_a_id) {
+                  return (
+                    <div className="boxer-data">
+                      <img src={avatarimg} width={200} height={200}/>
+                      {boxer.first_name} {boxer.last_name}
+                    </div>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+              <div className="versus">VS</div>
 
-          {boxers.map((boxer) => {
-            if (boxer.id === data.boxer_b_id) {
-              return (
-                <div>
-                  {boxer.first_name} {boxer.last_name}
-                </div>
-              );
-            } else {
-              return null;
-            }
-          })}
-
+              {boxers.map((boxer) => {
+                if (boxer.id === data.boxer_b_id) {
+                  return (
+                    <div className="boxer-data">
+                      <img src={avatarimg} width={200} height={200}/>
+                      {boxer.first_name} {boxer.last_name}
+                    </div>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+          </div>
           <div>
-            Scheduled Date: {data.time_scheduled}
+            Scheduled Date: {moment(new Date(data.time_scheduled)).format("h:mm a dddd, MMMM DD YYYY")}
           </div>
 
           {gyms.map((gym) => {

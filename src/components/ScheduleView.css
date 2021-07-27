@@ -14,4 +14,23 @@
   justify-content: center;
   /* flex-direction: column; */
   border: solid black 1px;
+  box-shadow: 5px 10px 15px black;
+}
+
+.boxers {
+  display:flex;
+  flex-direction: row;
+  border-bottom: solid black 1px;
+}
+
+.boxer-data {
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+}
+
+.versus {
+  display:flex;
+  align-items:center;
+  margin:5px;
 }
