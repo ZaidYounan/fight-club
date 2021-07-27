@@ -20,6 +20,7 @@ function App() {
   const [token, setToken] = useState(getToken());
   const [flash, setFlash] = useState('');
   const signedIn = !!token;
+  const [ render, setRender ] = useState(0);
 
   const requireAuth = render => (props => (
     signedIn ? render(props) : <Redirect to='/' />
@@ -45,6 +46,12 @@ function App() {
     }
   }
 
+  const renderComp= () => {
+    if (signedIn) {
+      setRender(1)
+      //Function to re-render Navbar if signed in
+    } else { setRender(0)}
+  }
 
   return (
     <div>
@@ -57,6 +64,7 @@ function App() {
             <Route path="/about" exact component={About} />
             <Route path="/schedule" exact component={Schedule} />
             <Route path="/schedule/new" render={requireAuth(() => (
+              {renderComp},
               <ScheduleForm />
             ))} />
             <Route path="/schedule/:id" exact render={({ match }) => {
@@ -65,6 +73,7 @@ function App() {
             }}/>
             <Route path="/fighters" exact component={Fighters}/>
             <Route path="/fighters/new" render={requireAuth(() => (
+              {renderComp},
               <CreateBoxer />
             ))} />
             <Route path="/contact" exact component={Contact} />
