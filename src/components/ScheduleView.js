@@ -106,10 +106,11 @@ function ScheduleView() {
             }
           })}
 
-          {/* Ran out to time to refactor code to only show link if no data in winner.id */}
+          {!!token ? (          
           <div>
             <Link to={"/schedule/" + data.id}>Update Results</Link>
           </div>
+          ) : ( <></> )}
 
           <div>
             {boxers.map((boxer) => {
