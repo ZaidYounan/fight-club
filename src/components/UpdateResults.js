@@ -37,7 +37,7 @@ function UpdateResults({ id }) {
       setLoser("");
       setResult("");
       setLoading(false);
-      history.push("/fights/");
+      history.push("/schedule");
     });
   };
 

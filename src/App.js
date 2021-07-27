@@ -20,7 +20,6 @@ function App() {
   const [token, setToken] = useState(getToken());
   const [flash, setFlash] = useState('');
   const signedIn = !!token;
-  const [ render, setRender ] = useState(0);
 
   const requireAuth = render => (props => (
     signedIn ? render(props) : <Redirect to='/' />
