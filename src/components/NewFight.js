@@ -12,10 +12,6 @@ function NewFight() {
   const [boxerB, setBoxerB] = useState("");
   const [timeScheduled, setTimeScheduled] = useState("");
   const [rounds, setRounds] = useState("");
-  const [roundTime, setRoundTime] = useState("");
-  const [winner, setWinner] = useState("");
-  const [loser, setLoser] = useState("");
-  const [result, setResult] = useState("");
   const [gym, setGym] = useState("");
   const [gyms, setGyms] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -32,10 +28,6 @@ function NewFight() {
       boxer_b_id: boxerB,
       time_scheduled: timeScheduled,
       rounds: rounds,
-      round_time: roundTime,
-      winner_id: winner,
-      loser_id: loser,
-      result: result,
       gym_id: gym,
     };
 
@@ -46,10 +38,6 @@ function NewFight() {
       setBoxerB("");
       setTimeScheduled("");
       setRounds("");
-      setRoundTime("");
-      setWinner("");
-      setLoser("");
-      setResult("");
       setGym("");
       setLoading(false);
       history.push("/schedule");
@@ -126,6 +114,7 @@ function NewFight() {
           </label>
           <DatePicker
             id="time_scheduled"
+            className="form-control"
             selected={timeScheduled}
             onChange={(date) => setTimeScheduled(date)}
             timeInputLabel="Time:"
@@ -146,53 +135,6 @@ function NewFight() {
             placeholder="Rounds"
             value={rounds}
             onChange={(e) => setRounds(e.target.value)}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="roundTime" className="mt-2">
-            Round Time
-          </label>
-          <input
-            type="number"
-            className="form-control"
-            id="round_time"
-            placeholder="RoundTime"
-            value={roundTime}
-            onChange={(e) => setRoundTime(e.target.value)}
-          />
-        </div>
-
-        <div className="form-group">
-          <input
-            type="hidden"
-            className="form-control"
-            id="winner_id"
-            placeholder="winner"
-            value={winner}
-            onChange={(e) => setWinner(e.target.value)}
-          />
-        </div>
-
-        <div className="form-group">
-          <input
-            type="hidden"
-            className="form-control"
-            id="loser_id"
-            placeholder="loser"
-            value={loser}
-            onChange={(e) => setLoser(e.target.value)}
-          />
-        </div>
-
-        <div className="form-group">
-          <input
-            type="hidden"
-            className="form-control"
-            id="result"
-            placeholder="Result"
-            value={result}
-            onChange={(e) => setResult(e.target.value)}
           />
         </div>
 
