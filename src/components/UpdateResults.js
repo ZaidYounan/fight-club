@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import "./UpdateResults.css";
 import axios from "axios";
@@ -10,6 +10,9 @@ function UpdateResults({ id }) {
   const [winner, setWinner] = useState("");
   const [loser, setLoser] = useState("");
   const [result, setResult] = useState("");
+  const [boxers, setBoxers] = useState([]);
+  const [setBoxerW] = useState([]);
+  const [setBoxerL] = useState([]);
   const [setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -51,6 +54,20 @@ function UpdateResults({ id }) {
     { value: 'DQ', text: 'DQ' }
   ];
 
+  //Get boxers data
+  useEffect(() => {
+
+    axios
+      .get(`${API_URL}/boxers`)
+      .then((response) => {
+        setBoxers(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+  }, []);
+
   return (
     <div className="container">
 
@@ -90,28 +107,40 @@ function UpdateResults({ id }) {
           <label htmlFor="winner" className="mt-2">
             Winner of Match
           </label>
-          <input
-            type="string"
+          <select
             className="form-control"
             id="winner_id"
-            placeholder="winner"
-            value={winner}
+            placeholder="Winner"
             onChange={(e) => setWinner(e.target.value)}
-          />
+            onSubmit={(e) => setBoxerW(e.target.value)}
+          >
+            <option value="Winner">Please Select Winner</option>
+            {boxers.map((boxer) => (
+              <option key={boxer.value} value={boxer.id}>
+                {boxer.first_name} {boxer.last_name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="form-group">
           <label htmlFor="loser" className="mt-2">
-            Looser
+            Against
           </label>
-          <input
-            type="string"
+          <select
             className="form-control"
             id="loser_id"
-            placeholder="loser"
-            value={loser}
+            placeholder="Winner"
             onChange={(e) => setLoser(e.target.value)}
-          />
+            onSubmit={(e) => setBoxerL(e.target.value)}
+          >
+            <option value="loser">Please Select Loser</option>
+            {boxers.map((boxer) => (
+              <option key={boxer.value} value={boxer.id}>
+                {boxer.first_name} {boxer.last_name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="form-group">
