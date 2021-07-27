@@ -4,21 +4,21 @@ import "./UpdateResults.css";
 import axios from "axios";
 import { API_URL } from "../api/auth";
 
-function UpdateResults() {
-    const [rounds, setRounds] = useState("");
-    const [roundTime, setRoundTime] = useState("");
-    const [winner, setWinner] = useState("");
-    const [loser, setLoser] = useState("");
-    const [result, setResult] = useState("");
-    const [setResults] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
-    const [data] = useState(null);
-    const history = useHistory();
+function UpdateResults({ id }) {
+  const [rounds, setRounds] = useState("");
+  const [roundTime, setRoundTime] = useState("");
+  const [winner, setWinner] = useState("");
+  const [loser, setLoser] = useState("");
+  const [result, setResult] = useState("");
+  const [setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [data] = useState(null);
+  const history = useHistory();
 
-    const handleSubmit = () => {
-        setLoading(true);
-        setIsError(false);
+  const handleSubmit = () => {
+    setLoading(true);
+    setIsError(false);
 
     const data = {
       rounds: rounds,
@@ -28,7 +28,7 @@ function UpdateResults() {
       result: result,
     };
 
-    axios.patch(`${API_URL}/fights/1`, data).then((res) => {
+    axios.patch(`${API_URL}/fights/${id}`, data).then((res) => {
       setRounds("");
       setRoundTime("");
       setWinner("");
@@ -39,13 +39,14 @@ function UpdateResults() {
     });
   };
 
+
   const resultsArr = [
-    {value: 'Draw',   text: 'Draw'  },
-    {value: 'majority decision', text: 'Majority Decision'   },
-    {value: 'KO', text: 'KO'},
-    {value: 'TKO',   text: 'TKO'  },
-    {value: 'ND',   text: 'ND'  },
-    {value: 'DQ',   text: 'DQ'  }
+    { value: 'Draw', text: 'Draw' },
+    { value: 'majority decision', text: 'Majority Decision' },
+    { value: 'KO', text: 'KO' },
+    { value: 'TKO', text: 'TKO' },
+    { value: 'ND', text: 'ND' },
+    { value: 'DQ', text: 'DQ' }
   ];
 
   return (
@@ -82,7 +83,7 @@ function UpdateResults() {
         </div>
 
         <div className="form-group">
-        <label htmlFor="winner" className="mt-2">
+          <label htmlFor="winner" className="mt-2">
             Winner of Match
           </label>
           <input
@@ -96,7 +97,7 @@ function UpdateResults() {
         </div>
 
         <div className="form-group">
-        <label htmlFor="loser" className="mt-2">
+          <label htmlFor="loser" className="mt-2">
             Looser
           </label>
           <input
@@ -110,7 +111,7 @@ function UpdateResults() {
         </div>
 
         <div className="form-group">
-        <label htmlFor="result" className="mt-2">
+          <label htmlFor="result" className="mt-2">
             Match Result
           </label>
           <select
@@ -121,11 +122,11 @@ function UpdateResults() {
             onSubmit={(e) => setResults(e.target.value)}
           >
             {resultsArr.map((result) => (
-                <option key={result.value} value={result.value}>
-                 {result.text}
-                </option>
+              <option key={result.value} value={result.value}>
+                {result.text}
+              </option>
             ))}
-            </select>
+          </select>
         </div>
 
 

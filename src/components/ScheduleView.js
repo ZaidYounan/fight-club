@@ -31,10 +31,8 @@ function ScheduleView() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
 
-  useEffect(() => {
-    axios
+      axios
       .get(`${API_URL}/boxers`)
       .then((response) => {
         setBoxers(response.data);
@@ -42,10 +40,8 @@ function ScheduleView() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
 
-  useEffect(() => {
-    axios
+      axios
       .get(`${API_URL}/gyms`)
       .then((response) => {
         setGyms(response.data);
@@ -53,7 +49,9 @@ function ScheduleView() {
       .catch((error) => {
         console.log(error);
       });
+
   }, []);
+
 
   return fights ? (
     <div className="fight-container">
@@ -96,6 +94,9 @@ function ScheduleView() {
               return null;
             }
           })}
+        <div>
+        <Link to={"/schedule/" + data.id}>Update Results</Link>
+        </div>
 
         <div>
         {((boxer) => {
@@ -106,9 +107,8 @@ function ScheduleView() {
                 </div>
               );
             } else {
-              return (
-              <Link to={"/schedule/" + data.id}>Update Results</Link>
-        )}
+              return null;
+        }
           })}
         </div>
 

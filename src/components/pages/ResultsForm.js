@@ -2,10 +2,10 @@ import React from "react";
 import "../../App.css";
 import UpdateResults from "../UpdateResults";
 
-function ScheduleForm() {
+function ScheduleForm({ id }) {
   return (
     <div>
-      <UpdateResults />
+      <UpdateResults id={id} />
     </div>
   );
 }

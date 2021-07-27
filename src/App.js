@@ -49,7 +49,11 @@ function App() {
           <Route path="/schedule/new" render={requireAuth(() => (
             <ScheduleForm />
             ))} />
-          <Route path="/schedule/:id" exact component={ResultsForm} />
+          {/* <Route path="/schedule/:id" exact component={ResultsForm} /> */}
+          <Route path="/schedule/:id" exact render={({ match }) => {
+            const id = match.params.id;
+            return (<ResultsForm id={id} />)
+          }}/>
           <Route path="/fighters" exact component={Fighters}/>
           <Route path="/fighters/new" render={requireAuth(() => (
             <CreateBoxer />

@@ -22,9 +22,6 @@ function BoxerView() {
         console.log(token);
     }
 
-
-
-
     useEffect(() => {
         axios.get(`${API_URL}/boxers`)
             .then(response => {
@@ -33,16 +30,15 @@ function BoxerView() {
             .catch(error => {
                 console.log(error)
             })
-    }, []);
 
-    useEffect(() => {
-        axios.get(`${API_URL}/gyms`)
+            axios.get(`${API_URL}/gyms`)
             .then(response => {
                 setGyms(response.data);
             })
             .catch(error => {
                 console.log(error)
             })
+
     }, []);
 
     return (
