@@ -11,15 +11,16 @@ function Navbar() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
 
-
+    //Reverses boolean value, to turn mobile hamburger menu on/off with each click
     const handleClick = () => setClick(!click);
 
+    //Hook to close mobile menu
     const closeMobileMenu = () => setClick(false);
 
     const [render, setRender] = useState(false);
 
 
-
+    //Show burger menu if window width <= 960px
     const showButton = () => {
         if(window.innerWidth <= 960) {
             setButton(false);
@@ -28,6 +29,8 @@ function Navbar() {
         }
     };
 
+    /* Store session token, set token to false, and 
+    switch to true if bearerToken is not null and has many characters  */
 
     const bearerToken = localStorage.getItem('session_token')
     var token = false;
@@ -40,7 +43,8 @@ function Navbar() {
         token = false;
         console.log(token);
     }
- 
+    
+    //Show sign in/up buttons on mobile burger-meni
     const showSignIn = () => {
         if (window.innerWidth <= 960 && !token) {
             return <li className='nav-item'>
@@ -50,6 +54,7 @@ function Navbar() {
             }
     }
 
+    //Whenever screen is resized, showButton is called
     window.addEventListener('resize', showButton);
 
     return (

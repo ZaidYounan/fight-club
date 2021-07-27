@@ -23,6 +23,9 @@ function NewBoxer() {
     setLoading(true);
     setIsError(false);
 
+
+    /* Attach avatar formdata (couldn't get it working in time, 
+    but it doesn't impede the form submission */
     const formData = new FormData();
     formData.append('file',avatar);
 
@@ -37,7 +40,8 @@ function NewBoxer() {
       gym_id: gym,
       avatar: avatar,
     };
-  
+
+    //Post boxer data
     axios.post(`${API_URL}/boxers`, data).then((res) => {
       setData(res.data);
       setFirstName("");
@@ -53,6 +57,7 @@ function NewBoxer() {
     });
   };
 
+  //Get gyms to display gym names in drop-down menu
   useEffect(() => {
     axios
       .get(`${API_URL}/gyms`)

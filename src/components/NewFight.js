@@ -38,6 +38,8 @@ function NewFight() {
       result: result,
       gym_id: gym,
     };
+
+    //Post fight data
     axios.post(`${API_URL}/fights`, data).then((res) => {
       setData(res.data);
       setBoxerA("");
@@ -54,6 +56,7 @@ function NewFight() {
     });
   };
 
+  //useEffect hook to get boxers / gym data for drop-down menu
   useEffect(() => {
     axios
       .get(`${API_URL}/boxers`)
@@ -63,9 +66,7 @@ function NewFight() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
 
-  useEffect(() => {
     axios
       .get(`${API_URL}/gyms`)
       .then((response) => {

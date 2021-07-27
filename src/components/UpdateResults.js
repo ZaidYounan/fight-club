@@ -20,6 +20,7 @@ function UpdateResults({ id }) {
     setLoading(true);
     setIsError(false);
 
+    //Object to store data
     const data = {
       rounds: rounds,
       round_time: roundTime,
@@ -28,6 +29,7 @@ function UpdateResults({ id }) {
       result: result,
     };
 
+    //Patch data with updates
     axios.patch(`${API_URL}/fights/${id}`, data).then((res) => {
       setRounds("");
       setRoundTime("");
@@ -39,7 +41,7 @@ function UpdateResults({ id }) {
     });
   };
 
-
+  //Array to store possible Results drop-down box options
   const resultsArr = [
     { value: 'Draw', text: 'Draw' },
     { value: 'majority decision', text: 'Majority Decision' },

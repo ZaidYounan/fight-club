@@ -9,6 +9,9 @@ function BoxerView() {
     const [boxers, setBoxers] = useState([]);
     const [gyms, setGyms] = useState([]);
     
+
+    /* Authentication token storing to perform a check on whether to 
+    display the New Fighter button */
     const bearerToken = localStorage.getItem('session_token')
 
     var token = false;
@@ -22,7 +25,9 @@ function BoxerView() {
         console.log(token);
     }
 
-    //Get the Boxers and Gyms data
+    /* Get the Boxers and Gyms data both, so that gyms 
+    can be presented with the gym name rather than just 
+    the gym id */ 
     useEffect(() => {
         axios.get(`${API_URL}/boxers`)
             .then(response => {

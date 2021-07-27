@@ -16,8 +16,6 @@ import { Redirect } from 'react-router';
 import { signIn, signUp, getToken, signOut } from './api/auth';
 
 
-
-
 function App() {
   const [token, setToken] = useState(getToken());
   const [flash, setFlash] = useState('');

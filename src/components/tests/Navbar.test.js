@@ -29,3 +29,4 @@ test('renders link', () => {
   expect(registerCoach).toBeInTheDocument();
   
 });
+

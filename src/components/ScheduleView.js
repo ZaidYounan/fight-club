@@ -9,6 +9,9 @@ function ScheduleView() {
   const [fights, setFights] = useState([]);
   const [gyms, setGyms] = useState([]);
   const [boxers, setBoxers] = useState([]);
+
+   /* Store session token, set token to false, and 
+    switch to true if bearerToken is not null and has many characters  */
   const bearerToken = localStorage.getItem("session_token");
 
   var token = false;
@@ -22,6 +25,8 @@ function ScheduleView() {
     console.log(token);
   }
 
+
+  //Get fights/boxers/gyms data
   useEffect(() => {
     axios
       .get(`${API_URL}/fights`)

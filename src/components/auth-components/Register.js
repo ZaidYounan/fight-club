@@ -34,6 +34,7 @@ const vpassword = (value) => {
       <div className="alert alert-danger" role="alert">
         The password must be between 6 and 40 characters.
       </div>
+      //Password validation
     );
   }
 };
