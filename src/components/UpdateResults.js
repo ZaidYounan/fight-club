@@ -114,7 +114,7 @@ function UpdateResults({ id }) {
             onChange={(e) => setWinner(e.target.value)}
             onSubmit={(e) => setBoxerW(e.target.value)}
           >
-            <option value="Winner">'Please Select Winner'</option>
+            <option value="Winner">Please Select Winner</option>
             {boxers.map((boxer) => (
               <option key={boxer.value} value={boxer.id}>
                 {boxer.first_name} {boxer.last_name}
@@ -134,7 +134,7 @@ function UpdateResults({ id }) {
             onChange={(e) => setLoser(e.target.value)}
             onSubmit={(e) => setBoxerL(e.target.value)}
           >
-            <option value="loser">'Please Select Loser'</option>
+            <option value="loser">Please Select Loser</option>
             {boxers.map((boxer) => (
               <option key={boxer.value} value={boxer.id}>
                 {boxer.first_name} {boxer.last_name}
