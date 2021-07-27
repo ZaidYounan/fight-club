@@ -67,8 +67,8 @@ export function signOut() {
         }
     }).then(resp => {
         if (resp.ok) {
+            <Redirect to='/'/>
             return removeToken();
-            return <Redirect to='/'/>
         } else {
             console.error({ resp })
             const { status, statusText } = resp;
