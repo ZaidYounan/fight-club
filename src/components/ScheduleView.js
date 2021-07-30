@@ -71,84 +71,86 @@ function ScheduleView() {
 
 
 
-  return fights ? (
-    <div className="fight-container">
-      {fights.map((data) => (
-        <div className="fight-cards" key={data.id}>
-          <div className="boxers">
-              {boxers.map((boxer) => {
+  return  (
+    !!loadedSchedule ? (
+      <div className="fight-container">
+        {fights.map((data) => (
+          <div className="fight-cards" key={data.id}>
+            <div className="boxers">
+                {boxers.map((boxer) => {
 
-                if (boxer.id === data.boxer_a_id) {
-                  return (
-                    <div className="boxer-data">
-                      <img src={avatarimg} width={200} height={200}/>
-                      {boxer.first_name} {boxer.last_name}
-                    </div>
-                  );
-                } else {
-                  return null;
-                }
-              })}
-              <div className="versus">VS</div>
+                  if (boxer.id === data.boxer_a_id) {
+                    return (
+                      <div className="boxer-data">
+                        <img src={avatarimg} width={200} height={200}/>
+                        {boxer.first_name} {boxer.last_name}
+                      </div>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
+                <div className="versus">VS</div>
 
-              {boxers.map((boxer) => {
-                if (boxer.id === data.boxer_b_id) {
-                  return (
-                    <div className="boxer-data">
-                      <img src={avatarimg} width={200} height={200}/>
-                      {boxer.first_name} {boxer.last_name}
-                    </div>
-                  );
-                } else {
-                  return null;
-                }
-              })}
-          </div>
-          <div>
-            Scheduled Date: {moment(new Date(data.time_scheduled)).format("h:mm a dddd, MMMM DD YYYY")}
-          </div>
+                {boxers.map((boxer) => {
+                  if (boxer.id === data.boxer_b_id) {
+                    return (
+                      <div className="boxer-data">
+                        <img src={avatarimg} width={200} height={200}/>
+                        {boxer.first_name} {boxer.last_name}
+                      </div>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
+            </div>
+            <div>
+              Scheduled Date: {moment(new Date(data.time_scheduled)).format("h:mm a dddd, MMMM DD YYYY")}
+            </div>
 
-          {gyms.map((gym) => {
-            if (gym.id === data.gym_id) {
-              return <div>Location: {gym.name}</div>;
-            } else {
-              return null;
-            }
-          })}
-
-          {!!token ? (          
-          <div>
-            <Link to={"/schedule/" + data.id}>Update Results</Link>
-          </div>
-          ) : ( <></> )}
-
-          <div>
-            {boxers.map((boxer) => {
-              if (boxer.id === data.winner_id) {
-                return (
-                  <div>
-                    Winner: {boxer.first_name} {boxer.last_name}
-                  </div>
-                );
+            {gyms.map((gym) => {
+              if (gym.id === data.gym_id) {
+                return <div>Location: {gym.name}</div>;
               } else {
                 return null;
               }
             })}
-          </div>
 
-        </div>
-      ))}
-      {!!token ? (
-        <Button link="/schedule/new" buttonStyle="btn--schedule">
-          Schedule a New Fight
-        </Button>
-      ) : (
-        <></>
-      )}
-    </div>
-  ) : (
-    <div className="loading-text">Loading Fight Schedule, please wait...</div>
-  );
+            {!!token ? (          
+            <div>
+              <Link to={"/schedule/" + data.id}>Update Results</Link>
+            </div>
+            ) : ( <></> )}
+
+            <div>
+              {boxers.map((boxer) => {
+                if (boxer.id === data.winner_id) {
+                  return (
+                    <div>
+                      Winner: {boxer.first_name} {boxer.last_name}
+                    </div>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </div>
+
+          </div>
+        ))}
+        {!!token ? (
+          <Button link="/schedule/new" buttonStyle="btn--schedule">
+            Schedule a New Fight
+          </Button>
+        ) : (
+          <></>
+        )}
+      </div>
+    ) : (
+      <div className="loading-text">Loading Fight Schedule, please wait...</div>
+    )
+  )
 }
 
 export default ScheduleView;
