@@ -19,5 +19,7 @@
 
 .loading-button {
     text-align:center;
-    margin-top: 40%;
+    margin-top: 25%;
+    font-size:xx-large;
+    font-weight:bolder;
 }
