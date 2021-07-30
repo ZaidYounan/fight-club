@@ -16,3 +16,8 @@
     border:solid black 1px;
     box-shadow: 5px 10px 18px;
 }
+
+.loading-button {
+    text-align:center;
+    margin-top: 40%;
+}

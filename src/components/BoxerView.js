@@ -84,7 +84,7 @@ function BoxerView() {
                     }
             </div>
         ) : ( 
-            <div>Loading Boxers</div> 
+            <div className="loading-button">Loading Boxer profiles, please wait...</div> 
         )
     );
 }
