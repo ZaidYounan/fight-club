@@ -1,6 +1,7 @@
 import React from 'react';
 import './Button.css';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 /* Custom Button component that stores styles, sizes and even links */
 
@@ -25,6 +26,7 @@ export const Button = ({
     const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0]
 
     const checkLink = LINKS.includes(link) ? link : LINKS[0]
+
 
     return (
         <Link to={ checkLink } className='btn-mobile'>
