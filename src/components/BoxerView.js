@@ -47,7 +47,6 @@ function BoxerView() {
 
     }, []);
 
-    console.log(boxers);
 
     var loadedBoxers = false;
 
@@ -84,7 +83,7 @@ function BoxerView() {
                     }
             </div>
         ) : ( 
-            <div className="loading-button">Loading Boxer profiles, please wait...</div> 
+            <div className="loading-text">Loading Boxer profiles, please wait...</div> 
         )
     );
 }

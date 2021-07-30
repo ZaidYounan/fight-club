@@ -60,6 +60,16 @@ function ScheduleView() {
 
   }, []);
 
+  var loadedSchedule = false;
+
+
+  if (fights.length > 0) {
+      loadedSchedule = true;
+  } else {
+      loadedSchedule = false;
+  }
+
+
 
   return fights ? (
     <div className="fight-container">
@@ -137,7 +147,7 @@ function ScheduleView() {
       )}
     </div>
   ) : (
-    <div>Loading Schedule</div>
+    <div className="loading-text">Loading Fight Schedule, please wait...</div>
   );
 }
 
