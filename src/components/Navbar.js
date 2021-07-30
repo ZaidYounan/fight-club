@@ -45,7 +45,7 @@ function Navbar() {
     }
     
     //Show sign in/up buttons on mobile burger-meni
-    const showSignIn = () => {
+    const showSignInMobile = () => {
         if (window.innerWidth <= 960 && !token) {
             return <li className='nav-item'>
                         <Button link='/sign-in' buttonStyle='btn--outline'>COACH SIGN IN</Button>
@@ -55,7 +55,9 @@ function Navbar() {
     }
 
     //Whenever screen is resized, showButton is called
+    window.addEventListener('load', showButton);
     window.addEventListener('resize', showButton);
+
 
     return (
         <>
@@ -88,16 +90,16 @@ function Navbar() {
                                 Contact Us
                             </Link>
                         </li>
-                        {showSignIn()}
+                        {showSignInMobile}
                         </ul>
                         </div>
                         <div className="btn-coach-nav">
                         {!!token ? (
                                     button && 
                                         <Button link='/sign-out' buttonStyle='btn--outline' 
-                                    onClick={() => {signOut(); setRender(true);}}> SIGN OUT</Button>
-                                 ): button && <Button link='/sign-in' buttonStyle='btn--coach'>COACH SIGN IN</Button>}
-                                {!token ? (button && <Button link='/sign-up' buttonStyle='btn--coach'>REGISTER COACH</Button>) : (<></>) }
+                                    onClick={() => {signOut(); setRender(true); closeMobileMenu()}}> SIGN OUT</Button>
+                                 ): button && <Button link='/sign-in' buttonStyle='btn--coach' onClick={closeMobileMenu}>COACH SIGN IN</Button>}
+                                {!token ? (button && <Button link='/sign-up' buttonStyle='btn--coach' onClick={closeMobileMenu}>REGISTER COACH</Button>) : (<></>) }
                         </div>
             </nav>
         </>
