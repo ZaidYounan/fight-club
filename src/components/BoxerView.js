@@ -36,7 +36,7 @@ function BoxerView() {
             .catch(error => {
                 console.log(error)
             })
-
+            
         axios.get(`${API_URL}/gyms`)
             .then(response => {
                 setGyms(response.data);
@@ -47,8 +47,19 @@ function BoxerView() {
 
     }, []);
 
+    console.log(boxers);
+
+    var loadedBoxers = false;
+
+
+    if (boxers.length > 0) {
+        loadedBoxers = true;
+    } else {
+        loadedBoxers = false;
+    }
+
     return (
-        boxers ? (
+        !!loadedBoxers ? (
             <div className="boxer-container">
                 {boxers.map((data) => (
                     <div className="boxer-cards" key={data.id}> 
