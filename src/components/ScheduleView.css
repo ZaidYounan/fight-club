@@ -11,7 +11,8 @@
   .fight-cards {
     width: 80%;
   }
-  img {
+
+  .boxer-data > img {
     width:80%;
     height:90%;
   }
