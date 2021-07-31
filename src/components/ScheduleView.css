@@ -7,6 +7,16 @@
   width: 100%;
 }
 
+@media screen and (max-width: 500px) {
+  .fight-cards {
+    width: 80%;
+  }
+  img {
+    width:80%;
+    height:90%;
+  }
+}
+
 .fight-cards {
   margin: 30px;
   padding: 10px;
@@ -16,6 +26,7 @@
   border: solid black 1px;
   box-shadow: 5px 10px 15px black;
 }
+
 
 .boxers {
   display:flex;

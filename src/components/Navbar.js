@@ -28,6 +28,9 @@ function Navbar() {
             setButton(true);
         }
     };
+    
+    window.addEventListener('load', showButton);
+    window.addEventListener('resize', showButton);
 
     /* Store session token, set token to false, and 
     switch to true if bearerToken is not null and has many characters  */
@@ -59,8 +62,7 @@ function Navbar() {
     }
 
     //Whenever screen is resized, showButton is called
-    window.addEventListener('load', showButton);
-    window.addEventListener('resize', showButton);
+
 
     return (
         <>
