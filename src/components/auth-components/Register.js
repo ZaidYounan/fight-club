@@ -81,6 +81,7 @@ const Register = (props) => {
             setMessage(email + ' has successfully registered.');
             setSuccessful(true);
             history.push("/");
+            window.location.reload();
           },
           (error) => {
             const resMessage =

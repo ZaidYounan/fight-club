@@ -65,6 +65,7 @@ const Login = (props) => {
               () => {
                 setMessage(email + ' has signed in.')
                 history.push("/");
+                window.location.reload();
               },
               (error) => {
                 const resMessage =

@@ -1,4 +1,4 @@
-import { useState, React } from 'react'; 
+import { useState, useEffect, React } from 'react'; 
 import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -28,7 +28,7 @@ function App() {
 
   const handleSignIn = (email, password) => {
     signIn(email, password)
-      .then(token => { setToken(token); setFlash(''); })
+      .then(token => { setToken(token); setFlash('You are logged in.'); })
       .catch(err => { console.dir({ err }); setFlash('Unable to log in')})
   }
 
@@ -45,6 +45,7 @@ function App() {
     }
   }
 
+
   return (
     <div>
         <Router>
@@ -54,8 +55,8 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/about" exact component={About} />
-            <Route path="/schedule" exact component={Schedule} />
-            <Route path="/schedule/new" component={ScheduleForm} render={requireAuth(() => (
+            <Route path="/schedule" exact component={Schedule}/>
+            <Route path="/schedule/new" exact render={requireAuth(() => (
               <ScheduleForm />
             ))} />
             <Route path="/schedule/:id" exact render={({ match }) => {
@@ -63,7 +64,7 @@ function App() {
               return (<ResultsForm id={id} />)
             }}/>
             <Route path="/fighters" exact component={Fighters}/>
-            <Route path="/fighters/new" component={CreateBoxer} render={requireAuth(() => (
+            <Route path="/fighters/new" render={requireAuth(() => (
               <CreateBoxer />
             ))} />
             <Route path="/contact" exact component={Contact} />
