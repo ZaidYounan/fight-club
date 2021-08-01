@@ -22,6 +22,15 @@
     margin-top: 18%;
     font-size:xx-large;
     font-weight:bolder;
+    display:flex;
+    justify-content:center; 
+
+}
+
+.loading-text > p {
     border:solid black 2px;
     box-shadow: 5px 10px 15px black;
-}
+    padding:2%;
+    background-color:black;
+    color:white;
+  }

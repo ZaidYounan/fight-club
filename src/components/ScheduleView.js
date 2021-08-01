@@ -148,7 +148,7 @@ function ScheduleView() {
         )}
       </div>
     ) : (
-      <div className="loading-text">Loading Fight Schedule, please wait...</div>
+      <div className="loading-text"><p>Loading Fight schedule, please wait...</p></div>
     )
   )
 }
