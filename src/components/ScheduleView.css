@@ -49,7 +49,9 @@
 
 .loading-text {
   text-align:center;
-  margin-top: 25%;
+  margin-top: 18%;
   font-size:xx-large;
   font-weight:bolder;
+  border:solid black 2px;
+  box-shadow: 5px 10px 15px black;
 }
