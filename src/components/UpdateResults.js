@@ -11,6 +11,7 @@ function UpdateResults({ id }) {
   const [loser, setLoser] = useState("");
   const [result, setResult] = useState("");
   const [boxers, setBoxers] = useState([]);
+  const [fight, setFight] = useState([]);
   const [setBoxerW] = useState([]);
   const [setBoxerL] = useState([]);
   const [setResults] = useState([]);
@@ -68,6 +69,25 @@ function UpdateResults({ id }) {
 
   }, []);
 
+  useEffect(() => {
+
+    axios
+      .get(`${API_URL}/fights/${id}`)
+      .then((response) => {
+        setFight(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+  }, []);
+
+
+
+
+
+
+
   return (
     <div className="container">
 
@@ -114,18 +134,37 @@ function UpdateResults({ id }) {
             onChange={(e) => setWinner(e.target.value)}
             onSubmit={(e) => setBoxerW(e.target.value)}
           >
-            <option value="Winner">Please Select Winner</option>
-            {boxers.map((boxer) => (
-              <option key={boxer.value} value={boxer.id}>
-                {boxer.first_name} {boxer.last_name}
+            {fight ? (
+              <>
+              <option value="Winner">Please Select Winner</option>
+              <option key={fight.value} value={fight.boxer_a_id}>
+                  {fight.boxer_a_id} - 
+                  {boxers.map((boxer) => {
+                    if (boxer.id === fight.boxer_a_id) {
+                      return ' ' + boxer.first_name + ' ' + boxer.last_name
+
+                        } else {
+                          return null
+                        }})}
               </option>
-            ))}
+              <option key={fight.value} value={fight.boxer_b_id}>
+                  {fight.boxer_b_id} - 
+                  {boxers.map((boxer) => {
+                    if (boxer.id === fight.boxer_b_id) {
+                      return ' ' + boxer.first_name + ' ' + boxer.last_name
+
+                        } else {
+                          return null
+                        }})}
+              </option>
+            </>
+            ) : (<div></div>)}
           </select>
         </div>
 
         <div className="form-group">
           <label htmlFor="loser" className="mt-2">
-            Against
+            Loser of Match
           </label>
           <select
             className="form-control"
@@ -134,12 +173,31 @@ function UpdateResults({ id }) {
             onChange={(e) => setLoser(e.target.value)}
             onSubmit={(e) => setBoxerL(e.target.value)}
           >
-            <option value="loser">Please Select Loser</option>
-            {boxers.map((boxer) => (
-              <option key={boxer.value} value={boxer.id}>
-                {boxer.first_name} {boxer.last_name}
-              </option>
-            ))}
+            {fight ? (
+              <>
+                <option value="loser">Please Select Loser</option>
+                <option key={fight.value} value={fight.boxer_a_id}>
+                    {fight.boxer_a_id} - 
+                    {boxers.map((boxer) => {
+                      if (boxer.id === fight.boxer_a_id) {
+                        return ' ' + boxer.first_name + ' ' + boxer.last_name
+
+                          } else {
+                            return null
+                          }})}
+                </option>
+                <option key={fight.value} value={fight.boxer_b_id}>
+                    {fight.boxer_b_id} - 
+                    {boxers.map((boxer) => {
+                      if (boxer.id === fight.boxer_b_id) {
+                        return ' ' + boxer.first_name + ' ' + boxer.last_name
+
+                          } else {
+                            return null
+                          }})}
+                </option>
+              </>
+            ) : (<div></div>)}
           </select>
         </div>
 
