@@ -8,8 +8,8 @@ import { signOut } from '../api/auth';
 
 
 function Navbar() {
-    const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
+    const [click, setClick] = useState(false);
 
     //Reverses boolean value, to turn mobile hamburger menu on/off with each click
     const handleClick = () => setClick(!click);
@@ -48,17 +48,30 @@ function Navbar() {
     }
     
     //Show sign in/up buttons on mobile burger-meni
-    const showSignIn = () => {
+    const showSignInMobile = () => {
         if (window.innerWidth <= 960 && !token) {
-         return <li className='nav-item'>
+            return <li className='nav-item'>
                         <Button link='/sign-in' buttonStyle='btn--outline' onClick={closeMobileMenu}>COACH SIGN IN</Button>
                         <Button link='/sign-up' buttonStyle='btn--outline' onClick={closeMobileMenu}>REGISTER COACH</Button>
-                </li>
+                   </li>
             } else if (window.innerWidth <= 960 && !!token) {
-         return <li>
-            <Button link='/sign-out' buttonStyle='btn--outline' onClick={() => {signOut(); setRender(true); closeMobileMenu()}}> SIGN OUT</Button>
-                </li>
+            return <li>
+                        <Button link='/sign-out' buttonStyle='btn--outline' onClick={() => {signOut(); setRender(true); closeMobileMenu()}}> SIGN OUT</Button>
+                   </li>
             }
+    }
+
+    const showSignIn = () => {
+        if (window.innerWidth > 960 && !token) {
+            return <li className='nav-item'>
+                        <Button link='/sign-in' buttonStyle='btn--coach' onClick={closeMobileMenu}>COACH SIGN IN</Button>
+                        <Button link='/sign-up' buttonStyle='btn--coach' onClick={closeMobileMenu}>REGISTER COACH</Button>
+                </li>
+        } else if (window.innerWidth > 960 && !!token) {
+            return <li>
+                        <Button link='/sign-out' buttonStyle='btn--outline' onClick={() => {signOut(); setRender(true); closeMobileMenu()}}> SIGN OUT</Button>
+                   </li>
+        }
     }
 
     //Whenever screen is resized, showButton is called
@@ -95,16 +108,11 @@ function Navbar() {
                                 Contact Us
                             </Link>
                         </li>
-                        {showSignIn()}
+                        {showSignInMobile()}
                         </ul>
                         </div>
                         <div className="btn-coach-nav">
-                        {!!token ? (
-                                    button && 
-                                        <Button link='/sign-out' buttonStyle='btn--outline' 
-                                    onClick={() => {signOut(); setRender(true);}}> SIGN OUT</Button>
-                                 ): button && <Button link='/sign-in' buttonStyle='btn--coach'>COACH SIGN IN</Button>}
-                                {!token ? (button && <Button link='/sign-up' buttonStyle='btn--coach'>REGISTER COACH</Button>) : (<></>) }
+                            {showSignIn()}
                         </div>
             </nav>
         </>
