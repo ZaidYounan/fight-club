@@ -5,6 +5,10 @@
   font-family: 'PT Sans', sans-serif;
 }
 
+a {
+  text-decoration:none;
+}
+
 a:hover {
   color:white;
   text-decoration: none;
