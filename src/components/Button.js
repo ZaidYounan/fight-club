@@ -1,11 +1,10 @@
 import React from 'react';
 import './Button.css';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 /* Custom Button component that stores styles, sizes and even links */
 
-const STYLES = ['btn--primary', 'btn--outline', 'btn--test','btn--schedule', 'btn--coach'];
+const STYLES = ['btn--primary', 'btn--outline', 'btn--test','btn--schedule', 'btn--coach', 'btn--view'];
 
 const SIZES = ['btn--medium', 'btn--large'];
 

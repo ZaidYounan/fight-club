@@ -34,6 +34,15 @@
     text-decoration-skip: box-decoration;
 }
 
+.btn--view {
+    background-color: transparent;
+    color: #fff;
+    padding: 8px 20px;
+    border: 1px solid var(--primary);
+    transition: all 0.3s ease-out;
+    text-decoration-skip: box-decoration;
+}
+
 .btn--coach {
     background-color: transparent;
     color: #fff;

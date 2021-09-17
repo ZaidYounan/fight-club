@@ -16,7 +16,7 @@ function MainSection() {
         if (!signedIn) {
             return <Button 
                         className='btns'
-                        buttonStyle='btn--primary'
+                        buttonStyle='btn--view'
                         buttonSize='btn--large'>
                             Are you a Coach? SIGN UP HERE!
                    </Button>
@@ -30,7 +30,7 @@ function MainSection() {
                 <Button 
                     link='/schedule'
                     className='btns'
-                    buttonStyle='btn--outline'
+                    buttonStyle='btn--primary'
                     buttonSize='btn--large'>
                         View the Scheduled Fights
                 </Button>
